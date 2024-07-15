@@ -48,20 +48,6 @@ export default function Home() {
   ];
 
   return (
-    <div className="container mx-auto p-4 bg-gray-100">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="space-y-5">
-          <Testimonial testimonials={testimonials} />
-        </div>
-        <div className="w-full flex justify-center items-center">
-          <VideoSection videoUrl="/woman.png" description="Видеоотзыв от Светланы" />
-        </div>
-      </div>
-      <div className="mt-8">
-        <Features features={featuresData} />
-      </div>
-      <ImageBanner altText="Image description" />
-    </div>
     <main className="*:mt-16">
       <section id="hero">
         <BlockCollection>
@@ -222,6 +208,20 @@ export default function Home() {
           </Block>
         </BlockCollection>
       </section>
+      <div className="container mx-auto p-4 bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="space-y-5">
+            <Testimonial testimonials={testimonials} />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <VideoSection videoUrl="/woman.png" description="Видеоотзыв от Светланы" />
+          </div>
+        </div>
+        <div className="mt-8">
+          <Features features={featuresData} />
+        </div>
+        <ImageBanner altText="Image description" />
+      </div>
     </main>
   );
 }
