@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        customGreen: '#A7CBB6', 
+        Green: '#A7CBB6', 
         lightBlue: '#9CC8FC',  
         gray: {
           100: '#F0F0F0',
@@ -41,7 +41,7 @@ const config: Config = {
         'custom-45': '45px'
       },
       gap: {
-        'custom-20': '20px',
+        'custom-105': '105px',
       },
       padding: {
         'custom-90': '90px',
