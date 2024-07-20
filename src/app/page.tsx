@@ -3,7 +3,8 @@ import Testimonial from './components/Testimonial';
 import VideoSection from './components/VideoSection';
 import Features from './components/Features';
 import ImageBanner from './components/ImageBanner';
-import { ArrowRightIcon, ArrowTopRightIcon } from "@/assets/home/arrowIcons";
+import ArrowRightIcon from '@/assets/home/ArrowRightIcon.svg'
+import ArrowTopRightIcon from '@/assets/home/ArrowTopRightIcon.svg'
 import {
   CallIcon,
   InstagramIcon,
@@ -12,40 +13,13 @@ import {
 } from "@/assets/home/socialIcons";
 import Block from "@/components/ui/Block";
 import BlockCollection from "@/components/ui/BlockCollection";
-import { doctors, infoBlock } from "@/data/data";
+import { doctors, infoBlock, testimonials, featuresData} from "@/data/data";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const testimonials = [
-    { name: 'Ganizhanov Muhammad', image: '/Ellipse1.png', text: 'Я очень рад, что у меня была возможность провести лечение в вашей клинике. Очень удобный онлайн формат. Очень доброжелательные. Всегда готовы предложить удобное время и день для посещения доктора.', rating: 4 },
-    { name: 'Razhabaliev Abay', image: '/Ellipse2.png', text: 'Я очень рад, что у меня была возможность провести лечение в вашей клинике. Очень удобный онлайн формат. Очень доброжелательные. Всегда готовы предложить удобное время и день для посещения доктора.', rating: 5 },
-    { name: 'Karimova Aiym', image: '/Ellipse2.png', rating: 3 },
-  ];
-
-  const featuresData = [
-    {
-      number: '01',
-      title: 'Наши преимущества',
-      heading: 'Удобный доступ к вашему благополучию',
-      subtitle: 'Забота о здоровье',
-      description: 'Простой способ заботиться о своем здоровье. Безопасный доступ к вашей медицинской истории через индивидуальные профили.'
-    },
-    {
-      number: '02',
-      title: 'Безопасность данных',
-      heading: 'Защита ваших данных',
-      subtitle: 'Современные технологии',
-      description: 'Ваши данные защищены с использованием современных технологий безопасности и шифрования.'
-    },
-    {
-      number: '03',
-      title: 'Легкий доступ',
-      heading: 'Доступ из любой точки мира',
-      subtitle: 'Любое устройство',
-      description: 'Доступ к вашим данным из любой точки мира с любого устройства в любое время.'
-    },
-  ];
+  console.log(ArrowRightIcon);
+  
 
   return (
     <main className="*:mt-16">
@@ -65,7 +39,8 @@ export default function Home() {
                   href={"#"}
                   className="border border-black rounded-full px-4 py-2 lg:py-3 xl:py-4 flex gap-1 items-center"
                 >
-                  {doctor.title} <ArrowRightIcon />
+                  {doctor.title} 
+                  {/* <Image src={ArrowRightIcon} alt='arrow_rigth'></Image> */}
                 </Link>
               ))}
             </div>
@@ -109,7 +84,7 @@ export default function Home() {
                   Акция
                 </p>
                 <div className="bg-white p-[10px] rounded-full">
-                  <ArrowTopRightIcon />
+                  <Image src={ArrowTopRightIcon} alt="arrow_top"></Image>
                 </div>
               </div>
               <p className="text-sm text-white mb-4">
@@ -166,7 +141,8 @@ export default function Home() {
                 href={"#"}
                 className="border-[#FFAEAD]  border-[5px] rounded-full p-2 flex items-center justify-center"
               >
-                <ArrowTopRightIcon size={20} />
+                <Image src={ArrowTopRightIcon} alt="arrow_top" width={20} height={20}></Image>
+
               </Link>
             </div>
             <p className="text-[28px] leading-tight mb-4">
