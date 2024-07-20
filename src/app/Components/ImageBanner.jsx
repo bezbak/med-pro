@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 const ImageBanner = ({ altText }) => (
-  <div className="relative bg-cover bg-center rounded-3xl h-[350px] w-full my-8 overflow-hidden">
+  <div className="relative bg-cover bg-center rounded-3xl h-[350px] w-full my-8 overflow-hidden mt-[70px]">
     <Image
       src="/imgObsessed.png"
       alt={altText}

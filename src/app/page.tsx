@@ -186,17 +186,20 @@ export default function Home() {
       </section>
       <div className="container mx-auto p-4 bg-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-5">
+          <div className="space-y-4">
             <Testimonial testimonials={testimonials} />
           </div>
-          <div className="w-full flex justify-center items-center">
+          <div className="w-full flex justify-center items-center mb-12">
             <VideoSection videoUrl="/woman.png" description="Видеоотзыв от Светланы" />
           </div>
         </div>
-        <div className="mt-8">
+        <div className="mb-12">
           <Features features={featuresData} />
         </div>
-        <ImageBanner altText="Image description" />
+        <div className='mt-12'>
+          <ImageBanner altText="Image description" />
+        </div>
+        
       </div>
     </main>
   );
