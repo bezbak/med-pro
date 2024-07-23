@@ -6,7 +6,7 @@ const BlockCollection = ({
     children: React.ReactNode;
   }) => {
   return (
-    <div className={`flex container mx-auto gap-5 ${className}`}>
+    <div className={`flex max-xl:flex-col container mx-auto gap-5 *:max-xl:w-full ${className}`}>
         {children}
     </div>
   )

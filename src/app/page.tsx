@@ -1,10 +1,10 @@
-import React from 'react';
-import Testimonial from './components/Testimonial';
-import VideoSection from './components/VideoSection';
-import Features from './components/Features';
-import ImageBanner from './components/ImageBanner';
-import ArrowRightIcon from '@/assets/home/ArrowRightIcon.svg'
-import ArrowTopRightIcon from '@/assets/home/ArrowTopRightIcon.svg'
+import React, { Suspense } from "react";
+import Testimonial from "./components/Testimonial";
+import VideoSection from "./components/VideoSection";
+import Features from "./components/Features";
+import ImageBanner from "./components/ImageBanner";
+import ArrowRightIcon from "@/assets/home/ArrowRightIcon.svg";
+import ArrowTopRightIcon from "@/assets/home/ArrowTopRightIcon.svg";
 import {
   CallIcon,
   InstagramIcon,
@@ -13,18 +13,21 @@ import {
 } from "@/assets/home/socialIcons";
 import Block from "@/components/ui/Block";
 import BlockCollection from "@/components/ui/BlockCollection";
-import { doctors, infoBlock, testimonials, featuresData} from "@/data/data";
+import { doctors, infoBlock, testimonials, featuresData, questions } from "@/data/data";
 import Image from "next/image";
 import Link from "next/link";
+import DoctorsSlider from "@/components/ui/DoctorsSlider";
+import Loading from "@/components/ui/Loading";
+import { Input, TextArea } from "@/components/ui/Input";
+import Accordion from "@/components/ui/Accordion";
 
 export default function Home() {
   console.log(ArrowRightIcon);
-  
 
   return (
     <main className="*:mt-16">
       <section id="hero">
-        <BlockCollection>
+        <BlockCollection className="*:min-h-[400px] *:xl:min-h-[530px]">
           <Block className="py-[30px] lg:py-[60px] xl:py-[75px] px-[20px] lg:px-[40px] xl:px-[56px] w-1/2">
             <h1 className="text-[#1B1616] font-semibold text-[22px] lg:text-[26px] xl:text-[30px] 2xl:text-[34px] mb-2 leading-tight">
               Иновационный способ заботы о себе и своем здоровее{" "}
@@ -39,7 +42,7 @@ export default function Home() {
                   href={"#"}
                   className="border border-black rounded-full px-4 py-2 lg:py-3 xl:py-4 flex gap-1 items-center"
                 >
-                  {doctor.title} 
+                  {doctor.title}
                   {/* <Image src={ArrowRightIcon} alt='arrow_rigth'></Image> */}
                 </Link>
               ))}
@@ -141,8 +144,12 @@ export default function Home() {
                 href={"#"}
                 className="border-[#FFAEAD]  border-[5px] rounded-full p-2 flex items-center justify-center"
               >
-                <Image src={ArrowTopRightIcon} alt="arrow_top" width={20} height={20}></Image>
-
+                <Image
+                  src={ArrowTopRightIcon}
+                  alt="arrow_top"
+                  width={20}
+                  height={20}
+                ></Image>
               </Link>
             </div>
             <p className="text-[28px] leading-tight mb-4">
@@ -158,7 +165,7 @@ export default function Home() {
         </BlockCollection>
       </section>
       <section id="info">
-        <BlockCollection>
+        <BlockCollection className="*:min-h-[400px] *:xl:min-h-[570px]">
           <Block className="w-3/5 bg-info-bg text-white p-8 relative bg-cover bg-no-repeat">
             <h2 className="text-[36px] leading-tight font-semibold">
               У нас работают только <br /> опытные специалисты{" "}
@@ -184,23 +191,102 @@ export default function Home() {
           </Block>
         </BlockCollection>
       </section>
+      
       <div className="container mx-auto p-4 bg-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="space-y-4">
             <Testimonial testimonials={testimonials} />
           </div>
           <div className="w-full flex justify-center items-center mb-12">
-            <VideoSection videoUrl="/woman.png" description="Видеоотзыв от Светланы" />
+            <VideoSection
+              videoUrl="/woman.png"
+              description="Видеоотзыв от Светланы"
+            />
           </div>
         </div>
         <div className="mb-12">
           <Features features={featuresData} />
         </div>
-        <div className='mt-12'>
+        <div className="mt-12">
           <ImageBanner altText="Image description" />
         </div>
-        
       </div>
+
+
+      <section>
+        <BlockCollection>
+          <Block className="!bg-[#9CC8FC] w-full pt-9 pb-8 text-white">
+            <div className="mb-7 px-9">
+              <div className="flex items-center justify-between mb-7">
+                <h2 className="text-[44px] leading-tight font-semibold">
+                  Узнайте о наших врачах
+                </h2>
+                <Link
+                  href={"#"}
+                  className="border-[#FFAEAD] bg-white border-[5px] rounded-full p-2 flex items-center justify-center"
+                >
+                  <Image
+                    src={ArrowTopRightIcon}
+                    alt="arrow_top"
+                    width={20}
+                    height={20}
+                  ></Image>
+                </Link>
+              </div>
+              <h3 className="text-[36px] leading-tight">
+                <span className="font-semibold">Med-Pro </span>- доступ к
+                качественной медицине онлайн без очередей.
+              </h3>
+            </div>
+            <Suspense fallback={<Loading />}>
+              <DoctorsSlider doctors={doctors} />
+            </Suspense>
+          </Block>
+        </BlockCollection>
+      </section>
+      <section>
+        <BlockCollection className="*:min-h-[600px] *:xl:min-h-[700px]">
+          <Block className="w-1/2 bg-feedback-bg bg-cover bg-center bg-no-repeat"></Block>
+          <Block className="w-1/2 px-12 py-14">
+            <h2 className="text-[36px] leading-tight font-semibold mb-[14px]">
+              Оставьте свои данные и мы с вами{" "}
+              <span className="text-[#9CC8FC]">свяжемся</span>
+            </h2>
+            <p className="text-[20px] leading-tight mb-[34px]">
+              Если у вас есть вопросчы, предложения или вы нуждетесь в помощь то
+              свяжитесь с нами. Мы будем рады вам помочь
+            </p>
+            <form className="flex flex-col gap-8">
+              <div className="flex flex-col gap-5">
+                <Input placeholder="Ваше имя" />
+                <Input placeholder="Ваш e-mail " />
+                <TextArea
+                  placeholder="Ваше cообщение"
+                  className="max-h-[120px] min-h-[120px]"
+                />
+              </div>
+              <button className="bg-[#9CC8FC] py-6 rounded-3xl text-white text-[22px]">
+                Отправить
+              </button>
+            </form>
+          </Block>
+        </BlockCollection>
+      </section>
+      <section>
+        <BlockCollection className="*:min-h-[600px] *:xl:min-h-[700px]">
+          <Block className="w-2/3 p-8 xl:p-16 ">
+            <h2 className="text-[40px] leading-tight font-semibold mb-5">Как записаться на консутьтацию</h2>
+            <div className="flex flex-col gap-8">
+            {questions.map(el=>(
+              <Accordion question={el}/>
+            ))}
+            </div>
+          </Block>
+          <Block className="w-1/3 bg-questions-bg bg-cover bg-no-repeat bg-center">
+
+          </Block>
+        </BlockCollection>
+      </section>
     </main>
   );
 }
