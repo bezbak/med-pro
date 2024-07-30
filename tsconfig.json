@@ -16,6 +16,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+   
     "plugins": [
       {
         "name": "next"
@@ -32,6 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
+// , "src/app/Components/Testimonial.jsx"  ],
   ],
   "exclude": [
     "node_modules"
