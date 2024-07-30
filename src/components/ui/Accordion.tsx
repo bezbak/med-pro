@@ -2,7 +2,7 @@
 import { IQuestion } from "@/types/types";
 import Image from "next/image";
 import React, { useState } from "react";
-import arrow from "@/assets/home/ArrowBottom.svg";
+import arrow from "@/assets/images/home/ArrowBottom.svg";
 
 const Accordion = ({ question }: { question: IQuestion }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,9 +14,9 @@ const Accordion = ({ question }: { question: IQuestion }) => {
         }}
         className="flex justify-between items-center py-3 w-full"
       >
-        <p className="text-[26px] leading-tight font-semibold">
+        <div className="text-[26px] leading-tight font-semibold">
           {question.question}
-        </p>
+        </div>
         <div className="border-[#FFAEAD] bg-white border-[5px] rounded-full w-10 h-10 flex items-center justify-center">
           <Image
             src={arrow}
@@ -29,7 +29,7 @@ const Accordion = ({ question }: { question: IQuestion }) => {
         </div>
       </button>
       {isOpen && (
-        <p className="text-[26px] leading-tight">{question.answer} </p>
+        <div className="text-[26px] leading-tight">{question.answer} </div>
       )}
     </div>
   );
