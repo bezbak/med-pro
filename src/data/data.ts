@@ -1,37 +1,40 @@
+import cordiolog from '@/assets/images/home/doctors/cordiolog.png';
+import cosmetolog from '@/assets/images/home/doctors/cosmetolog.png';
+import dermotolog from '@/assets/images/home/doctors/dermotolog.png';
 export const doctors = [
     {
         id: 1,
-        image: '/doctors/cordiolog.png',
+        image: cordiolog,
         title: 'Терапевт',
     },
     {
         id: 2,
-        image: '/doctors/cosmetolog.png',
+        image: dermotolog,
         title: 'Педиатр',
     },
     {
         id: 3,
-        image: '/doctors/dermotolog.png',
+        image: cosmetolog,
         title: 'Невролог',
     },
     {
         id: 4,
-        image: '/doctors/cordiolog.png',
+        image: cordiolog,
         title: 'Кордиолог',
     },
     {
         id: 5,
-        image: '/doctors/cordiolog.png',
+        image: cosmetolog,
         title: 'Уролог',
     },
     {
         id: 6,
-        image: '/doctors/cordiolog.png',
+        image: cosmetolog,
         title: 'Врач общей практики',
     },
     {
         id: 7,
-        image: '/doctors/cordiolog.png',
+        image: cosmetolog,
         title: 'Стоматолог',
     },
 ];
