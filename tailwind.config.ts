@@ -57,8 +57,10 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "hero-bg": "url('/hero_bg.png')",
-        "info-bg": "url('/info_bg.png')",
+        "hero-bg": "url('/card-bg/hero_bg.png')",
+        "info-bg": "url('/card-bg/info_bg.png')",
+        "feedback-bg": "url('/card-bg/feedback_bg.png')",
+        "questions-bg": "url('/card-bg/questions_bg.png')",
       },
     },
   },

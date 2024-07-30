@@ -5,7 +5,7 @@ const Block = ({
   className,
 }: {
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) => {
   return <div className={`rounded-3xl bg-white ${className}`}>{children}</div>;
 };
