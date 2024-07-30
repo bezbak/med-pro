@@ -26,7 +26,7 @@ const DoctorsSlider = ({ doctors }: { doctors: IDoctor[] }) => {
       }}
     >
       {doctors.map((doctor) => (
-        <SwiperSlide className="!h-auto">
+        <SwiperSlide key={doctor.id} className="!h-auto">
           <SlideCard doctor={doctor} />
         </SwiperSlide>
       ))}
