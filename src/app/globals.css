@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 @font-face {
   font-family: 'Gilroy';
   src: url('/fonts/Gilroy-Regular.woff2') format('woff2'),
@@ -19,8 +22,12 @@
 }
 
 
+
+
 body {
   @apply bg-gray-100;
+  max-width: 1400px;
+  margin: 0 auto; 
 }
 
 

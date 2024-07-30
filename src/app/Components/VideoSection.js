@@ -1,8 +1,9 @@
 import Image from 'next/image';
 
 const VideoSection = ({ videoUrl, description }) => (
-  <div className="w-[787px] h-[592px] rounded-3xl  ">
-    <div className="relative w-full h-full">
+  <div className=' w-custom-1300'>
+  <div className=" h-[592px]  w-5/4 rounded-2xl  ">
+    <div className="relative  h-full">
       <Image src={videoUrl} alt="Видеоотзыв" layout="fill" objectFit="cover" className="rounded-3xl" />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="bg-lightBlue rounded-full p-2">
@@ -12,9 +13,10 @@ const VideoSection = ({ videoUrl, description }) => (
         </div>
       </div>
       <div className="absolute bottom-4 left-4">
-        <p className="text-white text-3xl font-semibold">{description}</p>
+        <p className="text-white text-3xl font-Gilroy ">{description}</p>
       </div>
     </div>
+  </div>
   </div>
 );
 
