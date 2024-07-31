@@ -1,4 +1,4 @@
-// import Testimonial from './Components/Testimonial';
+import Testimonial from './Components/Testimonial';
 import Header from './Components/Header';
 import React, { Suspense } from "react";
 import VideoSection from "./components/VideoSection";
@@ -17,8 +17,7 @@ import BlockCollection from "@/components/ui/BlockCollection";
 import { doctors, infoBlock, testimonials, featuresData, questions } from "@/data/data";
 import Image from "next/image";
 import Link from "next/link";
-// import 'swiper/css';
-// import 'swiper/css/bundle';
+
 
 import DoctorsSlider from "@/components/ui/DoctorsSlider";
 import Loading from "@/components/ui/Loading";
@@ -29,7 +28,7 @@ export default function Home() {
   console.log(ArrowRightIcon);
 
   return (
-    <main className="*:mt-16 w-custom-1300 font-gilroy">
+    <main className=" mt-4 font-gilroy">
       <section id="hero">
       <Header />
         <BlockCollection className="*:min-h-[400px] *:xl:min-h-[530px]">
@@ -199,7 +198,7 @@ export default function Home() {
       <div className="container mx-auto  bg-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="space-y-2">
-            {/* <Testimonial testimonials={testimonials} /> */}
+            <Testimonial testimonials={testimonials} />
           </div>
           <div className="w-full flex justify-center items-center mb-12">
             <VideoSection

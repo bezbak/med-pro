@@ -11,18 +11,50 @@ interface Employee {
       id: 1,
       name: "Мухаммад Ганизанов",
       position: "CEO",
-      image: "/path/to/image1.jpg",
+      image: "/about/man1.png",
       description: "Мы верим в силу инноваций и готовы с вами идти в ногу с быстро меняющимся миром бизнеса. Давайте вместе делать вас бизнес более успешным и готовым к вызовам будущего",
     },
     {
       id: 2,
       name: "Акшаларов Нурлан",
       position: "Директор",
-      image: "/path/to/image2.jpg",
+      image: "/about/man2.png",
       description: "Мы верим в силу инноваций и готовы с вами идти в ногу с быстро меняющимся миром бизнеса. Давайте вместе делать вас бизнес более успешным и готовым к вызовам будущего",
     },
-    // добавьте больше сотрудников по необходимости
+    
   ];
   
-  export const aboutText: string = "В Med-Pro мы стремимся к тому, чтобы каждый человек имел доступ к качественной медицинской помощи независимо от своего местоположения или времени суток. Наша миссия заключается в предоставлении удобного и профессионального онлайн сервиса медицинских консультаций, позволяющего нашим клиентам получать квалифицированное медицинское обслуживание на расстоянии.";
   
+  export const sponsors: sponsor[] = [
+    {
+      id: 1,
+      name: "Sponsor 1",
+      image: "/about/sponsor1.png",
+    },
+    {
+      id: 2,
+      name: "Sponsor 2",
+      image: "/about/sponsor2.png",
+    },
+    {
+      id: 3,
+      name: "Sponsor 3",
+      image: "/about/sponsor3.png",
+    },
+    {
+      id: 4,
+      name: "Sponsor 4",
+      image: "/about/sponsor4.png",
+    },
+    {
+      id: 5,
+      name: "Sponsor 5",
+      image: "/about/sponsor5.png",
+    },
+    {
+      id: 6,
+      name: "Sponsor 6",
+      image: "/about/sponsor6.png",
+    },
+    
+  ];

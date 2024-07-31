@@ -1,45 +1,45 @@
-// import React from 'react';
-// import Image from 'next/image';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Virtual } from 'swiper';
-// import 'swiper/css';
-// import 'swiper/css/virtual';
-// import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
-// import styles from '../Testimonial.module.css';
+"use client";
+import Image from "next/image"
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { TestimonialProps } from "@/types/types";
 
-// const Testimonial: React.FC<any> = ({ testimonials }) => {
-//   return (
-//     <div className={styles.container}>
-//       <Swiper
-//         modules={[Virtual]}
-//         spaceBetween={30}
-//         slidesPerView={1}
-//         direction="vertical"
-//         virtual
-//       >
-//         {testimonials.map(({ name, image, text, rating }, index) => (
-//           <SwiperSlide key={index} virtualIndex={index}>
-//             <div className={styles.slide}>
-//               <Image src={image} alt={name} width={50} height={50} className="rounded-full" />
-//               <div>
-//                 <h3 className="text-xl font-semibold">{name}</h3>
-//                 <div className={styles.rating}>
-//                   {[...Array(rating)].map((_, i) => (
-//                     <span key={i} className={styles.starActive}>★</span>
-//                   ))}
-//                   {[...Array(5 - rating)].map((_, i) => (
-//                     <span key={i} className={styles.starInactive}>★</span>
-//                   ))}
-//                 </div>
-//                 <p className={styles.text}>{text}</p>
-//               </div>
-//             </div>
-//           </SwiperSlide>
-//         ))}
-//       </Swiper>
-//     </div>
-//   );
-// };
+const Testimonial = ({ testimonials }: { testimonials: TestimonialProps["testimonials"] }) => {
+  return (
+    <Swiper
+      className="!ml-9 !h-auto"
+      spaceBetween={20}
+      slidesPerView={1}
+      direction="vertical"
+      virtual
+    >
+      {testimonials.map(({ name, image, text, rating }, index) => (
+        <SwiperSlide key={index} virtualIndex={index} className="!h-auto">
+          <SlideCard name={name} image={image} text={text} rating={rating} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
 
-// export default Testimonial;
+const SlideCard = ({ name, image, text, rating }: { name: string; image: string; text: string; rating: number }) => {
+  return (
+    <div className="bg-white p-5 rounded-2xl h-full flex items-center">
+      <Image src={image} alt={name} className="rounded-full w-12 h-12" />
+      <div className="ml-4">
+        <h3 className="text-xl font-semibold">{name}</h3>
+        <div className="flex items-center">
+          {[...Array(rating)].map((_, i) => (
+            <span key={i} className="text-yellow-500">★</span>
+          ))}
+          {[...Array(5 - rating)].map((_, i) => (
+            <span key={i} className="text-gray-300">★</span>
+          ))}
+        </div>
+        <p className="mt-2 text-gray-700">{text}</p>
+      </div>
+    </div>
+  );
+};
+
+export default Testimonial;
