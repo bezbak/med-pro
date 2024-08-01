@@ -1,4 +1,4 @@
-// import Testimonial from './Components/Testimonial';
+import Testimonial from './Components/Testimonial';
 import Header from './Components/Header';
 import VideoSection from './components/VideoSection';
 import Features from './components/Features';
@@ -18,12 +18,12 @@ export default function Home() {
             <Hero />
             <OurMission />
             <Info />
-            <div className="container mx-auto  bg-gray-100">
+            <div className="container mx-auto h-custom-592 overflow-hidden bg-gray-100">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-2">
-                        {/* <Testimonial testimonials={testimonials} /> */}
+                        <Testimonial />
                     </div>
-                    <div className="w-full flex justify-center items-center mb-12">
+                    <div className="w-full h-full flex justify-center">
                         <VideoSection
                             videoUrl="/woman.png"
                             description="Видеоотзыв от Светланы"

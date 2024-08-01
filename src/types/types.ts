@@ -10,3 +10,11 @@ export interface IQuestion {
   question: string;
   answer: string;
 }
+export interface TestimonialProps {
+  testimonials: {
+    name: string;
+    image: string;
+    text: string;
+    rating: number;
+  }[];
+}
