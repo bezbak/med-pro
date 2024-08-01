@@ -2,35 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/fonts/Gilroy-Regular.woff2') format('woff2'),
-       url('/fonts/Gilroy-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+@layer base {
+    @font-face {
+        font-family: 'Gilroy';
+        font-style: normal;
+        src: url('../assets/fonts/Gilroy-Thin.ttf') format('ttf');
+        font-weight: 200;
+    }
+    @font-face {
+        font-family: 'Gilroy';
+        font-style: normal;
+        src: url('../assets/fonts/Gilroy-Regular.ttf') format('ttf');
+        font-weight: 400;
+    }
+    @font-face {
+        font-family: 'Gilroy';
+        font-style: normal;
+        src: url('../assets/fonts/Gilroy-Medium.ttf') format('ttf');
+        font-weight: 500;
+    }
+    @font-face {
+        font-family: 'Gilroy';
+        font-style: normal;
+        src: url('../assets/fonts/Gilroy-SemiBold.ttf') format('ttf');
+        font-weight: 600;
+    }
+    @font-face {
+        font-family: 'Gilroy';
+        font-style: normal;
+        src: url('../assets/fonts/Gilroy-Bold.ttf') format('ttf');
+        font-weight: 700;
+    }
 }
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/fonts/Gilroy-Bold.woff2') format('woff2'),
-       url('/fonts/Gilroy-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
-
-
-
 
 body {
-  @apply bg-gray-100;
-  max-width: 1400px;
-  margin: 0 auto; 
-}
-
-
-body {
-  background-color: #F0F0F0;
+    @apply bg-gray-100;
+    max-width: 1400px;
+    margin: 0 auto;
 }

@@ -3,18 +3,18 @@ import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { TestimonialProps } from "@/types/types";
+import { testimonials } from "@/data/data";
 
-const Testimonial = ({ testimonials }: { testimonials: TestimonialProps["testimonials"] }) => {
+const Testimonial = () => {
   return (
     <Swiper
       className="!ml-9 !h-auto"
       spaceBetween={20}
       slidesPerView={1}
       direction="vertical"
-      virtual
     >
       {testimonials.map(({ name, image, text, rating }, index) => (
-        <SwiperSlide key={index} virtualIndex={index} className="!h-auto">
+        <SwiperSlide key={index} className="!h-auto">
           <SlideCard name={name} image={image} text={text} rating={rating} />
         </SwiperSlide>
       ))}
@@ -25,7 +25,7 @@ const Testimonial = ({ testimonials }: { testimonials: TestimonialProps["testimo
 const SlideCard = ({ name, image, text, rating }: { name: string; image: string; text: string; rating: number }) => {
   return (
     <div className="bg-white p-5 rounded-2xl h-full flex items-center">
-      <Image src={image} alt={name} className="rounded-full w-12 h-12" />
+      <Image src={image} alt={name} width={80} height={80} className="rounded-full w-12 h-12" />
       <div className="ml-4">
         <h3 className="text-xl font-semibold">{name}</h3>
         <div className="flex items-center">
