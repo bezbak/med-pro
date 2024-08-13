@@ -1,5 +1,4 @@
 import Testimonial from './Components/Testimonial';
-import Header from './Components/Header';
 import VideoSection from './components/VideoSection';
 import Features from './components/Features';
 import ImageBanner from './components/ImageBanner';
@@ -13,8 +12,7 @@ import Questions from '@/components/home/Questions';
 
 export default function Home() {
     return (
-        <main className="*:mt-16 w-custom-1300 font-gilroy">
-            <Header />
+        <div className="*:mt-16 w-custom-1300 mx-auto font-gilroy">
             <Hero />
             <OurMission />
             <Info />
@@ -41,6 +39,6 @@ export default function Home() {
             <Doctors />
             <Feedback />
             <Questions />
-        </main>
+        </div>
     );
 }

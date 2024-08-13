@@ -2,13 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { serviceDetails } from '@/data/servicesData';
-import Header from '@/app/Components/Header';
 
 const Services: React.FC = () => {
   return (
     <div className="container mx-auto mt-4  font-gilroy">
-      <Header />
-      <div className='bg-white max-w-full h-custom-204 pt-8 p-4  rounded-3xl font-gilroy '>
+      <div className='bg-white max-w-full pt-8 p-4  rounded-3xl font-gilroy '>
         <h1 className="text-3xl font-bold text-left pl-4 m-4">Наши услуги</h1>
         <p className="text-center  w-custom-1236 h-custom-92 m-6">
           В <b className='text-l font-gilroy text-lightBlue'>Med-Pro</b>В Med-Pro наша команда медицинских специалистов стремится обеспечить сострадательный и индивидуальный уход. Каждый врач обладает богатым опытом и знаниями, гарантируя, что вы получите медицинское обслуживание высочайшего уровня. Познакомьтесь с нашей преданной командой ниже.

@@ -1,14 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import { employees } from '@/data/aboutData';
-import Header from '../Components/Header';
 import { sponsors } from '@/data/aboutData';
 
 const AboutUs: React.FC = () => {
   return (
     <section className="container max-w-8xl mt-4 font-gilroy">
-      <Header />
-      <div className=" mx-auto bg-white max-w-8xl pt-4 mt-2 rounded-3xl font-gilroy h-custom-204">
+      <div className=" mx-auto bg-white max-w-8xl pt-4 mt-2 rounded-3xl font-gilroy">
         <h1 className="text-4xl font-bold text-left ml-16 pl-8 pb-3 pt-2">О нас</h1>
         <p className="text-center w-full max-w-5xl h-auto ml-16 pl-9 mb-16">
           В <b className="text-l font-gilroy text-lightBlue">Med-Pro</b> мы стремимся к тому, чтобы каждый человек имел доступ к качественной медицинской помощи независимо от своего местоположения или времени суток. Наша миссия заключается в предоставлении удобного и профессионального онлайн сервиса медицинских консультаций, позволяющего нашим клиентам получать квалифицированное медицинское обслуживание на расстоянии.
