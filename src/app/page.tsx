@@ -24,14 +24,15 @@ import Loading from "@/components/ui/Loading";
 import { Input, TextArea } from "@/components/ui/Input";
 import Accordion from "@/components/ui/Accordion";
 
+
 export default function Home() {
   console.log(ArrowRightIcon);
 
   return (
-    <main className=" mt-4 font-gilroy">
+    <main className="  mt-[36px] font-Gilroy">
       <section id="hero">
       <Header />
-        <BlockCollection className="*:min-h-[400px] *:xl:min-h-[530px]">
+        <BlockCollection className=" *:min-h-[400px] *:xl:min-h-[530px]">
           <Block className="py-[30px] lg:py-[60px] xl:py-[75px] px-[20px] lg:px-[40px] xl:px-[56px] w-1/2">
             <h1 className="text-[#1B1616] font-semibold text-[22px] lg:text-[26px] xl:text-[30px] 2xl:text-[34px] mb-2 leading-tight">
               Иновационный способ заботы о себе и своем здоровее{" "}
@@ -195,22 +196,22 @@ export default function Home() {
           </Block>
         </BlockCollection>
       </section>
-      <div className="container mx-auto  bg-gray-100">
+      <div className="container mx-auto  bg-gray-100 pt-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="space-y-2">
             <Testimonial testimonials={testimonials} />
           </div>
-          <div className="w-full flex justify-center items-center mb-12">
+          <div className="w-full flex justify-center items-center  ">
             <VideoSection
               videoUrl="/woman.png"
               description="Видеоотзыв от Светланы"
             />
           </div>
         </div>
-        <div className="mb-12">
+        <div className="mb-8 ">
           <Features features={featuresData} />
         </div>
-        <div className="mt-12">
+        <div className="mt-10">
           <ImageBanner altText="Image description" />
         </div>
       </div>
@@ -256,7 +257,7 @@ export default function Home() {
               <span className="text-[#9CC8FC]">свяжемся</span>
             </h2>
             <p className="text-[20px] leading-tight mb-[34px]">
-              Если у вас есть вопросчы, предложения или вы нуждетесь в помощь то
+              Если у вас есть вопросы, предложения или вы нуждетесь в помощь то
               свяжитесь с нами. Мы будем рады вам помочь
             </p>
             <form className="flex flex-col gap-8">
@@ -289,6 +290,7 @@ export default function Home() {
 
           </Block>
         </BlockCollection>
+        
       </section>
     </main>
   );

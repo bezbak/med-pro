@@ -18,12 +18,13 @@ const config: Config = {
         pink: '#FFAEAD',
       },
       fontFamily: {
-        gilroy: ['Gilroy', 'sans-serif'],
+        gilroy: ['gilroy', 'sans-serif'],
       },
       width: {
         'custom-1300': '1300px',
         'custom-1236': '1236px',
-        'custom-787': '776px',
+        'custom-796': '796px',
+        'custom-776': '776px',
         'custom-640': '640px',
         'custom-600': '600px',
         'custom-592': '592px',
