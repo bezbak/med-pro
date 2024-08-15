@@ -1,6 +1,8 @@
+import { StaticImageData } from "next/image";
+
 export interface IDoctor {
   id: number;
-  image: string;
+  image: StaticImageData;
   title: string;
 }
 export interface IQuestion {
