@@ -21,15 +21,13 @@ const Services: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto mt-4  font-gilroy">
-      <div className='bg-white max-w-full pt-8 p-4  rounded-3xl font-gilroy '>
     <div className="w-[1300px] container mx-auto mt-[36px] font-gilroy">
-      <Header />
       <div className="bg-white max-w-full h-custom-204 pt-8 p-4 rounded-3xl font-gilroy">
         <h1 className="text-3xl font-bold text-left pl-4 m-4">Наши услуги</h1>
         <p className="text-center w-custom-1236 h-custom-92 m-6">
           В <b className="text-l font-gilroy text-lightBlue">Med-Pro</b> наша команда медицинских специалистов стремится обеспечить сострадательный и индивидуальный уход. Каждый врач обладает богатым опытом и знаниями, гарантируя, что вы получите медицинское обслуживание высочайшего уровня. Познакомьтесь с нашей преданной командой ниже.
         </p>
+        </div>
         <div className="grid grid-cols-3 gap-y-5 gap-x-7 mt-8">
           {Object.keys(serviceDetails).map((key) => {
             const service = serviceDetails[Number(key)];
@@ -53,8 +51,7 @@ const Services: React.FC = () => {
             );
           })}
         </div>
-      </div>
-      {isFormOpen && <AppointmentForm onClose={handleCloseForm} />} 
+      {isFormOpen && <AppointmentForm onClose={handleCloseForm} />}
     </div>
   );
 };
