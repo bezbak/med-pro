@@ -21,6 +21,8 @@ const Services: React.FC = () => {
   };
 
   return (
+    <div className="container mx-auto mt-4  font-gilroy">
+      <div className='bg-white max-w-full pt-8 p-4  rounded-3xl font-gilroy '>
     <div className="w-[1300px] container mx-auto mt-[36px] font-gilroy">
       <Header />
       <div className="bg-white max-w-full h-custom-204 pt-8 p-4 rounded-3xl font-gilroy">

@@ -1,5 +1,4 @@
 import Testimonial from './Components/Testimonial';
-import Header from './Components/Header';
 import VideoSection from './components/VideoSection';
 import Features from './components/Features';
 import ImageBanner from './components/ImageBanner';
@@ -83,8 +82,7 @@ export default function Home() {
                   <Image src={ArrowTopRightIcon} alt="arrow_top"></Image>
 =======
     return (
-        <main className="*:mt-16 w-custom-1300 font-gilroy">
-            <Header />
+        <div className="*:mt-16 w-custom-1300 mx-auto font-gilroy">
             <Hero />
             <OurMission />
             <Info />
@@ -305,7 +303,7 @@ export default function Home() {
             <Doctors />
             <Feedback />
             <Questions />
-        </main>
+        </div>
     );
 >>>>>>> 98d5ec808b639155cc6883a3d1678e6a933d4568
 }

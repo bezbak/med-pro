@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { employees } from '@/data/aboutData';
-import Header from '../Components/Header';
 import { sponsors } from '@/data/aboutData';
 
 
@@ -18,6 +17,8 @@ const AboutUs: React.FC = () => {
   const doctor = doctorData[1];
   const doctorReviews = reviews[1];
   return (
+    <section className="container max-w-8xl mt-4 font-gilroy">
+      <div className=" mx-auto bg-white max-w-8xl pt-4 mt-2 rounded-3xl font-gilroy">
     <section className="w-full ml-[40px] mt-[36px] font-gilroy">
       <Header />
       <div className=" w-[1300px]  max-full  bg-white pt-4 mt-2 rounded-3xl font-gilroy h-custom-204">
