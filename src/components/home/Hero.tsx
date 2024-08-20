@@ -35,7 +35,7 @@ const Hero = () => {
                             </Link>
                         ))}
                     </div>
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-7">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-7 text-transparent">
                         <Link
                             href={'tel:+996555555555'}
                             target="_blank"

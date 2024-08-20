@@ -1,9 +1,14 @@
 import Image from 'next/image';
-import Button from './ui/Button';
 import { FooterInput } from './ui/Input';
 import logo from '@/assets/images/home/logo_footer.svg';
-import { InstagramIcon, TelegramIcon, WhatsappIcon, YoutubeIcon } from '@/assets/images/home/socialIcons';
-import ttlogo from '@/assets/images/TTlogo.svg'
+import {
+  InstagramIcon,
+  TelegramIcon,
+  WhatsappIcon,
+  YoutubeIcon,
+} from '@/assets/images/home/socialIcons';
+import ttlogo from '@/assets/images/TTlogo.svg';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -43,11 +48,21 @@ const Footer = () => {
               <p>Соц сети</p>
             </div>
             <div>
-              <p className="mb-6">О нас</p>
-              <p>Наша клиника</p>
-              <p>Миссия</p>
-              <p>Доктора</p>
-              <p>Наши партнеры</p>
+              <p className="mb-6">
+                <Link href="/about">О нас</Link>
+              </p>
+              <p>
+                <Link href="/clinic">Наша клиника</Link>
+              </p>
+              <p>
+                <Link href="/mission">Миссия</Link>
+              </p>
+              <p>
+                <Link href="/doctors">Доктора</Link>
+              </p>
+              <p>
+                <Link href="/partners">Наши партнеры</Link>
+              </p>
             </div>
             <div>
               <Image src={logo} alt="logo" width={80} height={80} />
@@ -61,27 +76,47 @@ const Footer = () => {
           </div>
           <div className="text-[#FFAEAD]">
             <p className="mb-3">Подпишитесь на нас</p>
-            <form className='relative'>
+            <form className="relative">
               <input
                 type="text"
                 placeholder="E-mail"
                 className=" w-full rounded-xl pl-5 py-[14px] pr-6 placeholder:text-[#808080] bg-transparent border text-white"
               />
-              <button type="submit" className='absolute right-0 px-6 top-[20%] border-l h-[60%]'> &#62; </button>
+              <button
+                type="submit"
+                className="absolute right-0 px-6 top-[20%] border-l h-[60%]"
+              >
+                {' '}
+                &#62;{' '}
+              </button>
             </form>
           </div>
-          <div className='flex items-end justify-between'>
-            <div className='flex items-center gap-3'>
-                <div className='w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center'><WhatsappIcon/></div>
-                <div className='w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center'><TelegramIcon/></div>
-                <div className='w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center'><InstagramIcon/></div>
-                <div className='w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center'><YoutubeIcon/></div>
+          <div className="flex items-end justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+                <WhatsappIcon />
+              </div>
+              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+                <TelegramIcon />
+              </div>
+              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+                <InstagramIcon />
+              </div>
+              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+                <YoutubeIcon />
+              </div>
             </div>
-            <div className='text-[10px]'>&#169; 2024 — <span className='text-[#9CC8FC]'>Политика конфидициальности</span></div>
+            <div className="text-[10px]">
+              &#169; 2024 —{' '}
+              <span className="text-[#9CC8FC]">Политика конфидициальности</span>
+            </div>
           </div>
         </div>
       </div>
-      <div className='max-w-[510px] mx-auto text-white flex gap-3 px-5 py-6 rounded-xl bg-[#7153FF] items-center justify-center text-[20px]'><Image src={ttlogo} alt='TTlogo' width={28} height={28}/> Разработано компанией Tommorow-Techs ✨</div>
+      <div className="max-w-[510px] mx-auto text-white flex gap-3 px-5 py-6 rounded-xl bg-[#7153FF] items-center justify-center text-[20px]">
+        <Image src={ttlogo} alt="TTlogo" width={28} height={28} /> Разработано
+        компанией Tommorow-Techs ✨
+      </div>
     </footer>
   );
 };
