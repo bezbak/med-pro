@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 const VideoSection = ({ videoUrl, description }) => (
-  <div className=' w-custom-1300'>
+  <div className=' w-full '>
   <div className=" h-[592px]  w-5/4 rounded-2xl  ">
     <div className="relative  h-full">
       <Image src={videoUrl} alt="Видеоотзыв" layout="fill" objectFit="cover" className="rounded-3xl" />
