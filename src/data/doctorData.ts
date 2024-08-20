@@ -1,4 +1,4 @@
-interface DoctorDetail {
+export interface DoctorDetail {
   name: string;
   specialty: string;
   experience: string;
@@ -13,7 +13,7 @@ interface DoctorDetail {
   evaluation: string; 
 }
 
-interface ReviewDetail {
+export interface ReviewDetail {
   name: string;
   content: string;
   avatar: string; 
