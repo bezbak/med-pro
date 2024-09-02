@@ -34,3 +34,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Custom ignores
+# Игнорирование директории 'ui/calendar'
+src/components/ui/calendar/
+
+# Игнорирование конкретного файла 'VideoSection.tsx'
+src/components/VideoSection.tsx
+
+# Игнорирование других файлов
+src/components/Features.tsx
+src/components/ImageBanner.tsx
