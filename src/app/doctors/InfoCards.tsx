@@ -2,13 +2,16 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { doctorData, DoctorDetail } from '@/data/doctorData';
+import { DoctorDetail } from '@/data/doctorData';
 
-interface InfoCardsProps {
-  doctorData: DoctorDetail;
+interface InfoCardProps {
+  title: string;
+  content: string;
+  link: string;
+  icon: string;
 }
 
-const InfoCard: React.FC<{ title: string, content: string, link: string, icon: string }> = ({ title, content, link, icon }) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, content, link, icon }) => {
   const handleClick = () => {
     window.location.href = link;
   };
@@ -33,12 +36,7 @@ const InfoCard: React.FC<{ title: string, content: string, link: string, icon: s
 };
 
 interface InfoCardsProps {
-  doctorData: {
-    education: string;
-    treatmentApproach: string;
-    workExperience: string;
-    skills: string;
-  };
+  doctorData: DoctorDetail;
 }
 
 const InfoCards: React.FC<InfoCardsProps> = ({ doctorData }) => {

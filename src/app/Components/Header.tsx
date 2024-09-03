@@ -1,18 +1,12 @@
-"use client" ;
-
+"use client";
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { serviceDetails, ServiceDetail } from '@/data/servicesData'; 
-import chevronIcon from "../../../public/chevronIcon.png"
-import kg from  "../../../public/kg.png"
-import ru from "../../../public/ru.png"
-
-
+import { serviceDetails } from '@/data/servicesData';
 
 const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredServices, setFilteredServices] = useState<ServiceDetail[]>([]); 
+  const [filteredServices, setFilteredServices] = useState<typeof serviceDetails[number][]>([]); 
   const [hasSearched, setHasSearched] = useState(false); 
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +14,6 @@ const Header: React.FC = () => {
     setSearchTerm(searchValue);
     setHasSearched(true); 
 
-    
     if (searchValue.trim() !== '') {
       const filtered = Object.values(serviceDetails).filter((service) =>
         service.title.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -28,7 +21,6 @@ const Header: React.FC = () => {
       );
       setFilteredServices(filtered);
     } else {
-      
       setFilteredServices([]);
     }
   };
@@ -60,40 +52,36 @@ const Header: React.FC = () => {
           </div>
         </div>
         
-      <div className="flex items-center ">
-            <div className=" ml-[12px] mr-[13px] border-2  border-lightBlue rounded-lg">
-              <Image src={ru} alt="Russian Flag" width={50} height={32} />
-            </div>
-            <div className="mr-[13px] pl-[6px]">
-              <Image src={kg} alt="Kyrgyz Flag" width={51} height={34} />
-            </div>
+        <div className="flex items-center">
+          <div className="ml-[12px] mr-[13px] border-2 border-lightBlue rounded-lg">
+            {/* <Image src="/ru.png" alt="Russian Flag" width={50} height={32} /> */}
           </div>
-          <div className=" ">
-            <button className="h-[62px] w-[192px] text-white bg-lightBlue rounded-full flex items-center justify-center pl-[12px] ">
-              Регистрация
-              <div className="flex items-center justify-center bg-white ml-[12px] rounded-full w-[50px] h-[50px]">
-                <Image src={chevronIcon} alt="icon" width={24} height={24} />
-              </div>
-            </button>
+          <div className="mr-[13px] pl-[6px]">
+            {/* <Image src="/kg.png" alt="Kyrgyz Flag" width={51} height={34} /> */}
           </div>
-      
+        </div>
+        <div className="">
+          <button className="h-[62px] w-[192px] text-white bg-lightBlue rounded-full flex items-center justify-center pl-[12px]">
+            Регистрация
+            <div className="flex items-center justify-center bg-white ml-[12px] rounded-full w-[50px] h-[50px]">
+              {/* <Image src="/chevronIcon.png" alt="icon" width={24} height={24} /> */}
+            </div>
+          </button>
+        </div>
       </div>
 
-
-    
       <div className="mt-[20px]">
         {filteredServices.length > 0 ? (
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {filteredServices.map((service, index) => (
               <li key={index} className="border rounded-3xl p-6 shadow-lg">
-                <Image src={service.image} alt={service.title} width={100} height={100} className='rounded-lg' />
+                <Image src={service.image} alt={service.title} width={100} height={100} className="rounded-lg" />
                 <h3 className="text-xl font-bold mt-2">{service.title}</h3>
                 <p className="text-gray-700">{service.description}</p>
               </li>
             ))}
           </ul>
         ) : (
-         
           hasSearched && searchTerm.trim() !== '' && <p className="text-[16px]">Не найдено услуг по вашему запросу.</p>
         )}
       </div>

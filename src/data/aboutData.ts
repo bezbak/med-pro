@@ -23,9 +23,13 @@ interface Employee {
     },
     
   ];
+  interface Sponsor {
+    id: number;
+    name: string;
+    image: string;
+  }
   
-  
-  export const sponsors: sponsor[] = [
+  export const sponsors: Sponsor[] = [
     {
       id: 1,
       name: "Sponsor 1",

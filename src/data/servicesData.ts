@@ -1,10 +1,10 @@
-interface ServiceDetail {
-    title: string;
-    image: string;
-    description: string;
+interface ServiceDetails {
+    title: any;
+    image: any;
+    description: any;
   }
   
-  export const serviceDetails: { [key: number]: ServiceDetail } = {
+  export const serviceDetails: { [key: number]: ServiceDetails } = {
     1: { title: 'Косметолог', image: '/services/cosmetology.png', description: 'Описание для косметолога.' },
     2: { title: 'Стоматолог', image: '/services/dantist.png', description: 'Описание для стоматолога.' },
     3: { title: 'Кардиолог', image: '/services/cardiologist.png', description: 'Описание для кардиолога.' },

@@ -5,7 +5,10 @@ import { serviceDetails } from '@/data/servicesData';
 const ServicePage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const service = serviceDetails[id];
+
+  
+  const serviceId = id ? parseInt(id as string) : null;
+  const service = serviceId ? serviceDetails[serviceId] : null;
 
   if (!service) {
     return <div>Услуга не найдена</div>;
@@ -20,3 +23,4 @@ const ServicePage = () => {
 };
 
 export default ServicePage;
+

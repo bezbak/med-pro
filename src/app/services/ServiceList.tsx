@@ -1,11 +1,10 @@
-// ServiceList.tsx
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { serviceDetails, ServiceDetail } from '@/data/servicesData'; 
+import { serviceDetails} from '@/data/servicesData'; // Измените ServiceDetail на ServiceDetails
 
 const ServiceList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredServices, setFilteredServices] = useState<ServiceDetail[]>(Object.values(serviceDetails));
+  const [filteredServices, setFilteredServices] = useState<any[]>(Object.values(serviceDetails));
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;

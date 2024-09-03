@@ -45,3 +45,6 @@ src/components/VideoSection.tsx
 # Игнорирование других файлов
 src/components/Features.tsx
 src/components/ImageBanner.tsx
+ src/components/CustomCalendar.tsx
+ src/components/ReserveDoctor.tsx
+ src/components/ReserveTime.tsx
