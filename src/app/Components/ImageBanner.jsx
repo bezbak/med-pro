@@ -1,16 +1,23 @@
-// import Image from 'next/image';
+import React from 'react';
+import Image from 'next/image';
 
-// const ImageBanner = ({ altText }) => (
-//   <div className="relative bg-cover bg-center rounded-3xl h-[350px] w-full my-8 overflow-hidden mt-[70px]">
-//     <Image
-//       src="/imgObsessed.png"
-//       alt={altText}
-//       layout="fill"
-//       objectFit="cover"
-//       className="rounded-3xl"
-//       priority
-//     />
-//   </div>
-// );
+const ImageBanner = () => {
+  
+  const altText = "Описание изображения";
 
-// export default ImageBanner;
+  return (
+    <div className="rounded-3xl my-8 mt-[60px] container lg:w-full">
+      <Image
+        src="/imgObsessed.png"
+        alt={altText}
+        layout="responsive"
+        width={1600}  
+        height={350}  
+        className="rounded-3xl"
+        priority
+      />
+    </div>
+  );
+};
+
+export default ImageBanner;

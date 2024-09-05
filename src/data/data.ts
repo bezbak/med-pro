@@ -101,7 +101,7 @@ export const testimonials = [
   },
 ];
 
-export const featuresData = [
+export const features= [
   {
     number: '01',
     title: 'Наши преимущества',

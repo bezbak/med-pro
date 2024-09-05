@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredServices, setFilteredServices] = useState<typeof serviceDetails[number][]>([]); 
   const [hasSearched, setHasSearched] = useState(false); 
+  const [activePage, setActivePage] = useState('Главная'); // Стейт для отслеживания активной страницы
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;
@@ -25,17 +26,45 @@ const Header: React.FC = () => {
     }
   };
 
+  const handleNavClick = (page: string) => {
+    setActivePage(page); // Обновляем активную страницу
+  };
+
   return (
-    <header className="w-full font-gilroy mb-[42px]">
+    <header className="container w-full font-gilroy mb-[42px] mt-[36px]">
       <div className="flex items-center">
-        <div className="flex items-center mr-[2px]">
+        <div className="flex items-center mr-[85px]">
           <Image src="/logo.png" alt="Logo" width={72} height={72} />
-          <span className="text-[34px] font-Gilroy-500 text-lightBlue pl-[12px]">Med-Pro</span>
+          <span className="text-[36px] font-Gilroy-500 text-lightBlue pl-[12px]">Med-Pro</span>
         </div>
-        <nav className="flex items-center bg-white shadow rounded-full w-[299px] ml-[85px]">
-          <a href="/" className="flex items-center text-[16px] w-[100px] h-[62px] text-white bg-pink rounded-full pl-[20px]">Главная</a>
-          <a href="/services" className="flex items-center justify-center w-[100px] h-[62px] pl-[12px] text-black">Услуги</a>
-          <a href="/about" className="flex items-center justify-center w-[100px] h-[62px] pl-[18px]">О нас</a>
+        <nav className="flex items-center bg-white shadow rounded-full w-[299px] ml-[15px]">
+          <a
+            href="/"
+            className={`flex items-center justify-center text-[16px] w-[100px] h-[62px] pl-[20px] rounded-full transition-colors duration-500 ${
+              activePage === 'Главная' ? 'bg-pink text-white' : 'bg-white text-black hover:bg-pink hover:text-white'
+            }`}
+            onClick={() => handleNavClick('Главная')}
+          >
+            Главная
+          </a>
+          <a
+            href="/services"
+            className={`flex items-center justify-center text-[16px] w-[100px] h-[62px] pl-[12px] rounded-full transition-colors duration-500 ${
+              activePage === 'Услуги' ? 'bg-pink text-white' : 'bg-white text-black hover:bg-pink hover:text-white'
+            }`}
+            onClick={() => handleNavClick('Услуги')}
+          >
+            Услуги
+          </a>
+          <a
+            href="/about"
+            className={`flex items-center justify-center text-[16px] w-[100px] h-[62px] pl-[18px] rounded-full transition-colors duration-500 ${
+              activePage === 'О нас' ? 'bg-pink text-white' : 'bg-white text-black hover:bg-pink hover:text-white'
+            }`}
+            onClick={() => handleNavClick('О нас')}
+          >
+            О нас
+          </a>
         </nav>
         <div className="flex items-center">
           <div className="relative flex items-center">
@@ -54,17 +83,17 @@ const Header: React.FC = () => {
         
         <div className="flex items-center">
           <div className="ml-[12px] mr-[13px] border-2 border-lightBlue rounded-lg">
-            {/* <Image src="/ru.png" alt="Russian Flag" width={50} height={32} /> */}
+            <Image src="/ru.png" alt="Рф" width={50} height={32} /> 
           </div>
           <div className="mr-[13px] pl-[6px]">
-            {/* <Image src="/kg.png" alt="Kyrgyz Flag" width={51} height={34} /> */}
+            <Image src="/kg.png" alt="Кр" width={51} height={34} /> 
           </div>
         </div>
         <div className="">
           <button className="h-[62px] w-[192px] text-white bg-lightBlue rounded-full flex items-center justify-center pl-[12px]">
             Регистрация
             <div className="flex items-center justify-center bg-white ml-[12px] rounded-full w-[50px] h-[50px]">
-              {/* <Image src="/chevronIcon.png" alt="icon" width={24} height={24} /> */}
+              <Image src="/chevronIcon.png" alt="icon" width={24} height={24} /> 
             </div>
           </button>
         </div>
