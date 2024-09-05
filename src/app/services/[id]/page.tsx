@@ -1,12 +1,13 @@
+"use client"
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import { serviceDetails } from '@/data/servicesData';
 
 const ServicePage = () => {
-  const router = useRouter();
-  const { id } = router.query;
+  const router = useParams();
+  const { id } = router;
 
-  
+
   const serviceId = id ? parseInt(id as string) : null;
   const service = serviceId ? serviceDetails[serviceId] : null;
 
@@ -23,4 +24,3 @@ const ServicePage = () => {
 };
 
 export default ServicePage;
-
