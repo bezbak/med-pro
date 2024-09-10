@@ -13,8 +13,8 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <footer className="bg-[#22242A] mt-8">
-      <div className="container mx-auto pt-[65px] w-custom-1300 pb-[32px] flex gap-32 items-center justify-between">
-        <div className="h-[677px] w-[392px] bg-[#9CC8FC] rounded-2xl px-6 py-8 flex flex-col items-start justify-between">
+      <div className="container mx-auto pt-[65px] pb-[32px] flex gap-32 items-center justify-between">
+        <div className="h-[677px] w-[392px] bg-[#9CC8FC] rounded-2xl px-6 py-8 flex flex-col items-start justify-between hidden md:flex">
           <div className="leading-tight">
             <p>Обратная связь</p>
             <div className="text-[28px] mt-5 text-[#060606]">
@@ -93,18 +93,26 @@ const Footer = () => {
           </div>
           <div className="flex items-end justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+              <Link
+                href={'https://wa.me/996555555555'}
+                className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
                 <WhatsappIcon />
-              </div>
-              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+              </Link>
+              <Link
+                href={'https://t.me/pavel'}
+                className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
                 <TelegramIcon />
-              </div>
-              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+              </Link>
+              <Link
+                href={'https://www.instagram.com/kaktus_media/'}
+                className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
                 <InstagramIcon />
-              </div>
-              <div className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
+              </Link>
+              <Link
+                href={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}
+                className="w-[50px] h-[50px] border border-[#FFFFFF12] rounded-full flex items-center justify-center">
                 <YoutubeIcon />
-              </div>
+              </Link>
             </div>
             <div className="text-[10px]">
               &#169; 2024 —{' '}
@@ -113,7 +121,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-[510px] mx-auto text-white flex gap-3 px-5 py-6 rounded-xl bg-[#7153FF] items-center justify-center text-[20px]">
+      <div className="max-w-[510px] mx-auto text-white flex gap-3 px-5 py-6 rounded-xl bg-[#7153FF] items-center justify-center text-[12px] md:text-[20px] sm:px-3 sm:py-4 sm:gap-2 max-sm:m-[20px]">
         <Image src={ttlogo} alt="TTlogo" width={28} height={28} /> Разработано
         компанией Tommorow-Techs ✨
       </div>
