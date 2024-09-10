@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/router';
 import { doctors } from '@/data/doctorData'; // Импортируйте массив данных о врачах
-import DoctorInfo from '@/components/DoctorInfo'; // Ваш компонент DoctorInfo
+import DoctorInfo from '../DoctorInfo'; // Ваш компонент DoctorInfo
 
 const DoctorPage = () => {
   const router = useRouter();

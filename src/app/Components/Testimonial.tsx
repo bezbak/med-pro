@@ -1,11 +1,10 @@
-"use client";
+'use client';
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Scrollbar, Mousewheel } from "swiper/modules"; 
+import { Pagination, Mousewheel } from "swiper/modules"; 
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 
 import { testimonials } from "@/data/data";
 
@@ -25,13 +24,12 @@ const Testimonial = () => {
       slidesPerView={3}
       direction="vertical"
       pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
       mousewheel={true}
-      modules={[Pagination, Scrollbar, Mousewheel]} 
+      modules={[Pagination, Mousewheel]} // Убрали Scrollbar
     >
       {testimonials.map(({ id, name, image, text, rating }: TestimonialProps) => (
         <SwiperSlide key={id} className="!h-auto">
-          <SlideCard name={name} image={image} text={text} rating={rating} id={0} />
+          <SlideCard name={name} image={image} text={text} rating={rating} />
         </SwiperSlide>
       ))}
     </Swiper>

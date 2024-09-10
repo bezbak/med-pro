@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { serviceDetails} from '@/data/servicesData'; // Измените ServiceDetail на ServiceDetails
+import { serviceDetails} from '@/data/servicesData'; 
 
 const ServiceList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
