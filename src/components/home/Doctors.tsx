@@ -16,7 +16,7 @@ const Doctors = () => {
                                 Узнайте о наших врачах
                             </h2>
                             <Link
-                                href={'#'}
+                                href={'/doctors'}
                                 className="border-[#FFAEAD] bg-white border-[5px] rounded-full p-2 flex items-center justify-center"
                             >
                                 <Image
