@@ -1,9 +1,5 @@
-<<<<<<< HEAD:src/app/services/[id]/page.tsx
-"use client"
-=======
 "use client";
 
->>>>>>> 0a913fd (slider):src/app/services/[id].tsx
 import React from 'react';
 import { useParams } from 'next/navigation';
 import { serviceDetails } from '@/data/servicesData';
