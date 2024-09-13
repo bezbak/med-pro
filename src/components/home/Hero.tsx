@@ -3,19 +3,19 @@ import {
     InstagramIcon,
     TelegramIcon,
     WhatsappIcon,
-  } from "@/assets/images/home/socialIcons";
+} from "@/assets/images/home/socialIcons";
 import BlockCollection from "../ui/BlockCollection";
 import Block from "../ui/Block";
 import { doctors } from "@/data/data";
 import Link from "next/link";
 import Image from "next/image";
-import ArrowRightIcon from '@/assets/images/home/ArrowRightIcon.svg'
-import ArrowTopRightIcon from '@/assets/images/home/ArrowTopRightIcon.svg'
+import ArrowRightIcon from '@/assets/images/home/ArrowRightIcon.svg';
+import ArrowTopRightIcon from '@/assets/images/home/ArrowTopRightIcon.svg';
 
 const Hero = () => {
     return (
         <section id="hero">
-            <BlockCollection className="*:min-h-[400px] *:xl:min-h-[530px]">
+            <BlockCollection className="*:min-h-[400px] *:xl:min-h-[530px] mb-[60px]">
                 <Block className="py-[30px] lg:py-[60px] xl:py-[75px] px-[20px] lg:px-[40px] xl:px-[56px] w-1/2">
                     <h1 className="text-[#1B1616] font-semibold text-[22px] lg:text-[26px] xl:text-[30px] 2xl:text-[34px] mb-2 leading-tight">
                         Иновационный способ заботы о себе и своем здоровее{' '}
@@ -26,12 +26,12 @@ const Hero = () => {
                     <div className="flex gap-[6px] items-center flex-wrap mb-12">
                         {doctors.map((doctor) => (
                             <Link
-                                key={`dortor_${doctor.id}`}
-                                href={'#'}
+                                key={`doctor_${doctor.id}`}
+                                href={`/doctor/${doctor.id}`}  // Динамическая ссылка на страницу доктора
                                 className="border border-black rounded-full px-4 py-2 lg:py-3 xl:py-4 flex gap-[7px] items-center"
                             >
                                 {doctor.title}
-                                <Image src={ArrowRightIcon} width={20} height={20} alt='arrow_rigth'></Image>
+                                <Image src={ArrowRightIcon} width={20} height={20} alt='arrow_right'></Image>
                             </Link>
                         ))}
                     </div>
@@ -88,7 +88,7 @@ const Hero = () => {
                         </p>
                         <p className="text-sm text-white">
                             Получи <span className="text-[#FFAEAD]">50%</span> с
-                            14-апреля по 4марта 2024-года
+                            14-апреля по 4 марта 2024 года
                         </p>
                     </div>
                 </Block>

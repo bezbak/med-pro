@@ -13,8 +13,8 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <footer className="bg-[#22242A] mt-8">
-      <div className="container mx-auto pt-[65px] pb-[32px] flex gap-32 items-center justify-between">
-        <div className="h-[677px] w-[392px] bg-[#9CC8FC] rounded-2xl px-6 py-8 flex flex-col items-start justify-between hidden md:flex">
+      <div className="container mx-auto pt-[65px] w-custom-1300 pb-[32px] flex gap-32 items-center justify-between">
+        <div className="h-[677px] w-[392px] bg-[#9CC8FC] rounded-2xl px-6 py-8 flex flex-col items-start justify-between">
           <div className="leading-tight">
             <p>Обратная связь</p>
             <div className="text-[28px] mt-5 text-[#060606]">

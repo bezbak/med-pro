@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import Calendar from './ui/calendar';
+import Calendar from './ui/Calendar';
 
 const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
