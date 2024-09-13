@@ -41,11 +41,11 @@ const Footer = () => {
         <div className="flex-1 space-y-16 text-[14px] text-white">
           <div className="grid grid-cols-3 gap-6 *:first-line:text-[#FFAEAD]">
             <div>
-              <p className="mb-6">Инфо</p>
-              <p>Акции</p>
-              <p>Статистика</p>
-              <p>Контакты</p>
-              <p>Соц сети</p>
+              <p className="mb-6">Инфо</p><br/>
+              <Link href={"/promotion"}>Акции</Link ><br/>
+              <Link href={"/statistics"}>Статистика</Link ><br/>
+              <Link href={"/contacts"}>Контакты</Link ><br/>
+              <Link href={"/network"}>Соц сети</Link >
             </div>
             <div>
               <p className="mb-6">
@@ -69,10 +69,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="first-line:text-[#FFAEAD]">
-            <p className="mb-6">Контакты</p>
-            <p>+996 (990) 090-086</p>
-            <p>Medpro@gmail.com</p>
-            <p>Кыргызстан, г.Ош, улица Баялинова 180/А</p>
+            <p className="mb-6">Контакты</p><br/>
+            <Link href="tel:+996990090086">+996 (990) 090-086</Link><br/>
+            <Link href="mailto:Medpro@gmail.com">Medpro@gmail.com</Link><br/>
+            <Link href="https://maps.google.com/?q=Кыргызстан, г.Ош, улица Баялинова 180/А" target="_blank">
+              Кыргызстан, г.Ош, улица Баялинова 180/А
+            </Link>
           </div>
           <div className="text-[#FFAEAD]">
             <p className="mb-3">Подпишитесь на нас</p>
