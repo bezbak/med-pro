@@ -13,8 +13,8 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <footer className="bg-[#22242A] mt-8">
-      <div className="container mx-auto pt-[65px] w-custom-1300 pb-[32px] flex gap-32 items-center justify-between">
-        <div className="h-[677px] w-[392px] bg-[#9CC8FC] rounded-2xl px-6 py-8 flex flex-col items-start justify-between">
+      <div className="container mx-auto pt-[65px]  pb-[32px] flex gap-32 items-center justify-between">
+        <div className="h-[677px] w-[392px] bg-[#9CC8FC] rounded-2xl px-6 py-8 flex flex-col items-start justify-between hidden md:block">
           <div className="leading-tight">
             <p>Обратная связь</p>
             <div className="text-[28px] mt-5 text-[#060606]">
@@ -43,9 +43,9 @@ const Footer = () => {
             <div>
               <p className="mb-6">Инфо</p><br/>
               <Link href={"/promotion"}>Акции</Link ><br/>
-              <Link href={"/statistics"}>Статистика</Link ><br/>
-              <Link href={"/contacts"}>Контакты</Link ><br/>
-              <Link href={"/network"}>Соц сети</Link >
+              <Link href={"/hero"}>Статистика</Link ><br/>
+              <Link href={"/hero"}>Контакты</Link ><br/>
+              <Link href={"/hero"}>Соц сети</Link >
             </div>
             <div>
               <p className="mb-6">
