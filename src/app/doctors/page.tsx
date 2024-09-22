@@ -43,7 +43,7 @@ const Page: React.FC = () => {
             const service: Service = serviceDetails[Number(key)];  // Получаем данные о враче
             return (
               <div key={key} className="bg-white w-custom-420 h-custom-341 shadow-lg overflow-hidden rounded-3xl relative">
-                <Link href={`/doctorInfo/${key}`}>
+                 <Link href={`/doctorInfo/${key}`}>
                   <div>
                     <Image src={service.image} alt={service.title} width={390} height={240} className="w-full rounded-3xl p-4 h-50 object-cover" />
                     <div className="flex flex-col pt-2 items-center">

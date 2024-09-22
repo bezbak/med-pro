@@ -4,18 +4,16 @@ import { employees } from '@/data/aboutData';
 import { sponsors } from '@/data/aboutData';
 
 
-import DoctorInfo from '../doctors/DoctorInfo';
-import { doctorData, reviews } from '@/data/doctorData';
-import InfoCards from '../doctors/InfoCards';
-import Reviews from '../doctors/reviews';
+
+
+
 import Advertisement from '../doctors/advertisement';
 
 
 
 
 const AboutUs: React.FC = () => {
-  const doctor = doctorData[1];
-  const doctorReviews = reviews[1];
+  
   return (
     <section id='About'>
       <div className="w-full container mx-auto mt-[36px] font-gilroy">
@@ -58,11 +56,10 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
         <div className="  ">
-          <DoctorInfo doctorData={doctor} />
-          <InfoCards doctorData={doctor} />
+         
           <Advertisement />
 
-          <Reviews  /> 
+         
 
         </div> 
       </div>

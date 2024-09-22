@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Mousewheel } from "swiper/modules"; 
+import {  Mousewheel } from "swiper/modules"; 
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -25,7 +25,7 @@ const Testimonial = () => {
       direction="vertical"
       pagination={{ clickable: true }}
       mousewheel={true}
-      modules={[Pagination, Mousewheel]} // Убрали Scrollbar
+      modules={[Mousewheel]} // Убрали Scrollbar
     >
       {testimonials.map(({ id, name, image, text, rating }: TestimonialProps) => (
         <SwiperSlide key={id} className="!h-auto">
