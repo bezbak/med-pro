@@ -62,7 +62,7 @@ const AboutUs: React.FC = () => {
           <InfoCards doctorData={doctor} />
           <Advertisement />
 
-          <Reviews  /> 
+          <Reviews initialReviews={[]} /> 
 
         </div> 
       </div>
