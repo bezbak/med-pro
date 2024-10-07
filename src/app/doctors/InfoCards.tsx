@@ -2,13 +2,16 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { doctorData, DoctorDetail } from '@/data/doctorData';
+// import { DoctorDetail } from '@/data/doctorData';
 
-interface InfoCardsProps {
-  doctorData: DoctorDetail;
+interface InfoCardProps {
+  title: string;
+  content: string;
+  link: string;
+  icon: string;
 }
 
-const InfoCard: React.FC<{ title: string, content: string, link: string, icon: string }> = ({ title, content, link, icon }) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, content, link, icon }) => {
   const handleClick = () => {
     window.location.href = link;
   };
@@ -32,24 +35,19 @@ const InfoCard: React.FC<{ title: string, content: string, link: string, icon: s
   );
 };
 
-interface InfoCardsProps {
-  doctorData: {
-    education: string;
-    treatmentApproach: string;
-    workExperience: string;
-    skills: string;
-  };
-}
+// interface InfoCardsProps {
+//   doctorData: DoctorDetail;
+// }
 
-const InfoCards: React.FC<InfoCardsProps> = ({ doctorData }) => {
-  return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-6">
-      <InfoCard title="Образование и квалификации" content={doctorData.education} link="https://example.com/education" icon="/doctor/site.png" />
-      <InfoCard title="Подход к лечению" content={doctorData.treatmentApproach} link="https://example.com/treatment" icon="/doctor/site.png" />
-      <InfoCard title="Опыт работы" content={doctorData.workExperience} link="https://example.com/experience" icon="/doctor/site.png" />
-      <InfoCard title="Навыки и опыт" content={doctorData.skills} link="https://example.com/skills" icon="/doctor/site.png" />
-    </div>
-  );
-};
+// const InfoCards: React.FC<InfoCardsProps> = ({ doctorData }) => {
+//   return (
+//     <div className="grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-6">
+//       <InfoCard title="Образование и квалификации" content={doctorData.education} link="https://example.com/education" icon="/doctor/site.png" />
+//       <InfoCard title="Подход к лечению" content={doctorData.treatmentApproach} link="https://example.com/treatment" icon="/doctor/site.png" />
+//       <InfoCard title="Опыт работы" content={doctorData.workExperience} link="https://example.com/experience" icon="/doctor/site.png" />
+//       <InfoCard title="Навыки и опыт" content={doctorData.skills} link="https://example.com/skills" icon="/doctor/site.png" />
+//     </div>
+//   );
+// };
 
-export default InfoCards;
+// export default InfoCards;

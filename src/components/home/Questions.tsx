@@ -8,7 +8,7 @@ import { questions } from '@/data/data';
 const Questions = () => {
     return (
         <section id="questions">
-            <BlockCollection className="*:min-h-[600px] *:xl:min-h-[700px]">
+            <BlockCollection className="*:min-h-[600px] *:xl:min-h-[700px] mt-[60px]">
                 <Block className="w-2/3 p-8 xl:p-16 ">
                     <h2 className="text-[40px] leading-tight font-semibold mb-5">
                         Как записаться на консутьтацию

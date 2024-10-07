@@ -8,7 +8,7 @@ type Props = {}
 const Feedback = (props: Props) => {
   return (
     <section id='feedback'>
-                <BlockCollection className="*:min-h-[600px] *:xl:min-h-[700px]">
+                <BlockCollection className="*:min-h-[600px] *:xl:min-h-[700px] mt-[60px]">
                     <Block className="w-1/2 bg-feedback-bg bg-cover bg-center bg-no-repeat"></Block>
                     <Block className="w-1/2 px-12 py-14">
                         <h2 className="text-[36px] leading-tight font-semibold mb-[14px]">

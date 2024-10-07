@@ -11,9 +11,9 @@ import client4 from '@/assets/images/home/mission/client4.png';
 
 const OurMission = () => {
     return (
-        <section id="our-mission">
+        <section id="our-mission  "  >
             <BlockCollection>
-                <Block className="px-16 py-7 font-gilroy !bg-[#A7CBB6] text-white w-1/3">
+                <Block className="px-16 py-7 font-gilroy bg-[#A7CBB6] text-white w-1/3  ">
                     <div className="text-[95px] leading-tight font-semibold">
                         40К +
                     </div>
@@ -47,7 +47,7 @@ const OurMission = () => {
                         />
                     </div>
                 </Block>
-                <Block className="text-[#1B1616] w-2/3 p-8">
+                <Block className="text-[#1B1616] w-2/3 p-8 ]">
                     <div className="flex items-center justify-between mb-5">
                         <h2 className="text-[40px] leading-tight font-gilroy">
                             Наша миссия
