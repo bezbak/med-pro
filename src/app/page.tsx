@@ -1,4 +1,4 @@
-import Features from './components/Features'; 
+import Features from './Components/Features'; 
 import ImageBanner from './Components/ImageBanner';
 import Hero from '@/components/home/Hero';
 import OurMission from '@/components/home/OurMission';
