@@ -75,6 +75,13 @@ const Header: React.FC = () => {
               Услуги
             </Link>
             <Link
+              href="/doctors"
+              className={`text-sm sm:text-base md:text-lg px-5 py-3 rounded-full transition-colors duration-300`}
+              onClick={() => handleNavClick('Докторы')}
+            >
+              Докторы
+            </Link>
+            <Link
               href="/about"
               className={`text-sm sm:text-base md:text-lg px-5 py-3 rounded-full transition-colors duration-300`}
               onClick={() => handleNavClick('О нас')}

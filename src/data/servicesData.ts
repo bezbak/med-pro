@@ -13,22 +13,6 @@ interface ServiceDetails {
     6: { title: 'Невролог', image: '/services/nevr.png', description: 'Описание для невролога.' },
     7: { title: 'Педиатр', image: '/services/pediatr.png', description: 'Описание для педиатра.' },
     8: { title: 'Репродуктолог', image: '/services/repro.png', description: 'Описание для репродуктолога.' },
-    9: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    10: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    11: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    12: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    13: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    14: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    15: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    16: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    17: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    18: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    19: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    20: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    21: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    22: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    23: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
-    24: { title: 'Терапевт', image: '/services/terap.png', description: 'Описание для терапевта.' },
 
   };
   

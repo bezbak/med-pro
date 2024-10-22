@@ -1,32 +1,40 @@
 'use client';
-
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { serviceDetails } from '@/data/servicesData'; // Здесь находится информация о враче
-import AppointmentForm from '@/app/appointmentForm';  // Компонент для формы записи
-
-
-interface Service {
-  title: string;
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link'; 
+import './doctors.css'
+import { IoBookmarkOutline, IoStar } from 'react-icons/io5';
+import { BASE_URL } from '@/lib/utils';
+interface Doctor {
+  id: number;
+  name: string;
+  specialty: string;
+  rating: number;
+  reviews_count: number;
   image: string;
-  description: string;
+  consultation_cost: string;
 }
 
+
 const Page: React.FC = () => {
-  const [isFormOpen, setIsFormOpen] = useState<boolean>(false);  // Используем хук для открытия формы записи
-  const [selectedDoctor, setSelectedDoctor] = useState<Service | null>(null);  // Добавляем состояние для хранения выбранного врача
+  const [doctors, setDoctors] = useState<Doctor[]>([]); // Храним список врачей
+  const [loading, setLoading] = useState<boolean>(true); // Состояние загрузки
 
-  const handleOpenForm = (e: React.MouseEvent<HTMLButtonElement>, doctor: Service) => {
-    e.stopPropagation();  // Останавливаем всплытие события, чтобы не было перехода по ссылке
-    setSelectedDoctor(doctor);  // Сохраняем выбранного врача
-    setIsFormOpen(true);  // Открыть форму записи
-  };
+  // Получаем данные врачей с API
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/v1/doctors/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDoctors(data); // Сохраняем данные в состояние
+        setLoading(false); // Выключаем состояние загрузки
+      })
+      .catch((error) => {
+        console.error('Ошибка при получении данных:', error);
+        setLoading(false);
+      });
+  }, []);
 
-  const handleCloseForm = () => {
-    setIsFormOpen(false);  // Закрыть форму записи
-    setSelectedDoctor(null);  // Очистить выбранного врача
-  };
+  if (loading) return <p>Загрузка данных...</p>; // Рендерим загрузку, пока данные не получены
+
 
   return (
     <section id='doctorList'>
@@ -38,34 +46,34 @@ const Page: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-y-5 gap-x-7 mt-8">
-          {Object.keys(serviceDetails).map((key) => {
-            const service: Service = serviceDetails[Number(key)];  // Получаем данные о враче
-            return (
-              <div key={key} className="bg-white w-custom-420 h-custom-341 shadow-lg overflow-hidden rounded-3xl relative">
-                 <Link href={`/doctorInfo/${key}`}>
-                  <div>
-                    <Image src={service.image} alt={service.title} width={390} height={240} className="w-full rounded-3xl p-4 h-50 object-cover" />
-                    <div className="flex flex-col pt-2 items-center">
-                      <h3 className="text-3xl font-gilroy text-center">{service.title}</h3>
-                      <button
-                        className="button mt-4 px-4 py-2 text-white bg-lightBlue rounded-full absolute top-4 right-8 border-2 border-white"
-                        onClick={(e) => handleOpenForm(e, service)}  // Открыть форму записи
-                      >
-                        Записаться
-                      </button>
+        <div className="grid grid-cols-4 gap-y-5 gap-x-7 mt-8">
+            {doctors.map((doctor) => (
+              <div
+                key={doctor.id}
+                style={{ backgroundImage: `url(${BASE_URL}${doctor.image})` }}
+                className="doctor_card shadow-lg"
+              >
+                <div className="card_inner">
+                  <button className="card_bookmark">
+                    <IoBookmarkOutline widths={'20px'} width={'20px'} color="#9CC8FC" />
+                  </button>
+                  <div className="card_text">
+                    <div className="card_info">
+                      <Link href={`/doctorInfo/${doctor.id}`} className="title">
+                        {doctor.name}
+                      </Link>
+                      <Link href={`/doctors`} className="category">
+                        {doctor.specialty}
+                      </Link>
                     </div>
+                    <span>
+                      {doctor.rating.toFixed(1)} <IoStar color="#FFC85D" />
+                    </span>
                   </div>
-                </Link>
-                <div className="absolute top-0 left-0 right-0 h-1 bg-white"></div>
+                </div>
               </div>
-            );
-          })}
-        </div>
-
-        {isFormOpen && selectedDoctor && (
-          <AppointmentForm onClose={handleCloseForm} isOpen={true}/>
-        )}  {/* Здесь подключаем компонент формы записи */}
+            ))}
+          </div>
       </div>
     </section>
   );

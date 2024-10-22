@@ -28,6 +28,16 @@
       ]
     }
   },
+  "images": {
+    "remotePatterns": [
+      {
+        "protocol": "http",
+        "hostname": "127.0.0.1",
+        "port": "8000", // Укажите порт, если ваш API работает не на 80
+        "pathname": "/media/**",
+      },
+    ],
+  },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
