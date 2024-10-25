@@ -14,7 +14,7 @@ const Accordion = ({ question }: { question: IQuestion }) => {
         }}
         className="flex justify-between items-center py-3 w-full"
       >
-        <div className="text-[26px] leading-tight font-semibold">
+        <div className="text-[26px] max-sm:text-[14px] font-align-left leading-tight font-semibold">
           {question.question}
         </div>
         <div className="border-[#FFAEAD] bg-white border-[5px] rounded-full w-10 h-10 flex items-center justify-center">

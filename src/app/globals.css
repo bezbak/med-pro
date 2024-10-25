@@ -172,3 +172,8 @@ body {
     padding-left: 10px !important;
   }
 }
+@media (max-width:400px) {
+  .container{
+    width: 100%;
+  }
+}
