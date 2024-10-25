@@ -17,7 +17,7 @@ const AboutUs: React.FC = () => {
   return (
     <section id='About'>
       <div className="w-full container mx-auto mt-[36px] font-gilroy">
-        <div  className="   bg-white pt-4 mt-2 rounded-3xl font-gilroy h-custom-204">
+        <div  className="bg-white pt-4 mt-2 rounded-3xl font-gilroy h-custom-204">
         <h1 className="text-4xl font-bold text-left ml-[32px]   mt-[32px]">О нас</h1>
         <p className="text-left text-[20px]  h-[92px] ml-[32px]  mb-[32px]">
           В <b className="text-l font-gilroy text-lightBlue">Med-Pro2</b> мы стремимся к тому, чтобы каждый человек имел доступ к качественной медицинской помощи независимо от своего местоположения или времени суток. Наша миссия заключается в предоставлении удобного и профессионального онлайн сервиса медицинских консультаций, позволяющего нашим клиентам получать квалифицированное медицинское обслуживание на расстоянии.

@@ -13,8 +13,8 @@ const OurMission = () => {
     return (
         <section id="our-mission  "  >
             <BlockCollection>
-                <Block className="px-16 py-7 font-gilroy bg-[#A7CBB6] text-white w-1/3  ">
-                    <div className="text-[95px] leading-tight font-semibold">
+                <div className="rounded-3xl px-16 py-7 font-gilroy bg-[#A7CBB6] text-white w-1/3">
+                    <div className="text-[65px] sm:text-[95px] leading-tight font-semibold">
                         40К +
                     </div>
                     <p className="text-[22px] font-gilroy leading-tight mb-1">
@@ -46,7 +46,7 @@ const OurMission = () => {
                             height={100}
                         />
                     </div>
-                </Block>
+                </div>
                 <Block className="text-[#1B1616] w-2/3 p-8 ]">
                     <div className="flex items-center justify-between mb-5">
                         <h2 className="text-[40px] leading-tight font-gilroy">
@@ -64,7 +64,7 @@ const OurMission = () => {
                             ></Image>
                         </Link>
                     </div>
-                    <p className="text-[28px] font-gilroy leading-tight mb-4">
+                    <p className="text-[16px] sm:text-[28px] font-gilroy leading-tight mb-4">
                         Мы в{' '}
                         <span className="text-[#9CC8FC]">
                             &quot;Med-Pro&quot;
@@ -72,7 +72,7 @@ const OurMission = () => {
                         даем доступ к качественной медицинской помощи в любое
                         время и в любом месте
                     </p>
-                    <p className="text-[24px] font-gilroy leading-tight">
+                    <p className="text-[16px] sm:text-[24px] font-gilroy leading-tight">
                         Мы предлагаем удобные онлайн консультации с
                         профессионалами, обеспечивая клиентам качественное
                         медицинское обслуживание удаленно.

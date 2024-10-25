@@ -163,3 +163,12 @@ body {
   background-color: transparent;
   cursor: default;
 }
+@media (max-width:480px) {
+  .container{
+    width: 100%;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+  }
+}

@@ -38,7 +38,7 @@ const DoctorsSlider = () => {
     return (
         <>
             <Swiper
-                className="h-auto"
+                className="h-auto max-sm:h-[470px]"
                 spaceBetween={20}
                 slidesPerView={2.94}
                 pagination={{ clickable: true }}
@@ -47,6 +47,7 @@ const DoctorsSlider = () => {
                     0: {
                         slidesPerView: 1,
                         spaceBetween: 20,
+                        direction:'vertical'
                     },
                     768: {
                         slidesPerView: 1.94,

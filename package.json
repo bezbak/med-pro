@@ -25,6 +25,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.26.1",
     "react-slick": "^0.30.2",
+    "react-world-flags": "^1.6.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.12",
     "tailwind-merge": "^2.5.2",

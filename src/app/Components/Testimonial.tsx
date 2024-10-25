@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import {  Mousewheel } from "swiper/modules"; 
 import "swiper/css";
 import "swiper/css/pagination";
-
+import './styles/testomionals.css'
 import { testimonials } from "@/data/data";
 
 interface TestimonialProps {
@@ -19,7 +19,7 @@ interface TestimonialProps {
 const Testimonial = () => {
   return (
     <Swiper
-      className="h-[500px] w-[500px] !ml-9"
+      className="h-[500px] w-[500px] !ml-9 reviews_swiper"
       spaceBetween={20}
       slidesPerView={3}
       direction="vertical"
@@ -38,7 +38,7 @@ const Testimonial = () => {
 
 const SlideCard = ({ name, image, text, rating }: TestimonialProps) => {
   return (
-    <div className="w-[464px] mt-[20px] bg-lightBlue rounded-3xl p-4 flex items-center">
+    <div className="max-sm:flex-col max-xl:gap-[20px] w-[464px] mt-[20px] bg-lightBlue rounded-3xl p-4 flex items-center swiper_item">
       <Image
         src={image}
         alt={name}

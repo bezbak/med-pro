@@ -3,11 +3,9 @@
 import React, { useState, Fragment } from 'react';
 import BlockCollection from '../ui/BlockCollection';
 import Block from '../ui/Block';
-import Link from 'next/link';
 import { infoBlock } from '@/data/data';
 import { Dialog, Transition } from '@headlessui/react';
-import AppointmentForm from '@/app/appointmentForm'; // Импортируем компонент формы
-
+import './styles/info.css'
 type Props = {};
 
 const Info = (props: Props) => {
@@ -35,13 +33,13 @@ const Info = (props: Props) => {
                         Записаться на консультацию
                     </button>
                 </Block>
-                <Block className="w-2/5 text-white !bg-[#FFAEAD] px-7 py-10">
+                <Block className="w-2/5 text-white !bg-[#FFAEAD] px-7 py-10 suka_block">
                     {infoBlock.map((info) => (
                         <div key={`info_${info.id}`}>
-                            <p className="text-[90px] leading-tight font-extrabold">
+                            <p className="text-[90px] info_amount leading-tight font-extrabold">
                                 {info.amount}
                             </p>
-                            <p className="text-[32px] leading-tight font-extrabold">
+                            <p className="text-[32px] info_title leading-tight font-extrabold">
                                 {info.title}
                             </p>
                         </div>

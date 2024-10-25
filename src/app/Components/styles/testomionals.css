@@ -1,0 +1,16 @@
+@media (max-width:600px) {
+    .reviews_swiper{
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto !important;
+    }
+    .swiper_item{
+        width: 100%;
+    }
+}
+@media (max-width:480px) {
+    .reviews_swiper{
+        height: 330px;
+
+    }
+}

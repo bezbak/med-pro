@@ -12,7 +12,7 @@ const Doctors = () => {
                 <Block className="!bg-[#9CC8FC] w-full pt-9 pb-8 text-white">
                     <div className="mb-7 px-9">
                         <div className="flex items-center justify-between mb-7">
-                            <h2 className="text-[44px] leading-tight font-semibold">
+                            <h2 className="max-sm:text-[22px] text-[44px] leading-tight font-semibold">
                                 Узнайте о наших врачах
                             </h2>
                             <Link
@@ -27,9 +27,8 @@ const Doctors = () => {
                                 ></Image>
                             </Link>
                         </div>
-                        <h3 className="text-[36px] leading-tight">
-                            <span className="font-semibold">Med-Pro </span>-
-                            доступ к качественной медицине онлайн без очередей.
+                        <h3 className="max-sm:text-[20px] text-[36px] leading-tight">
+                            <span className="font-semibold">Med-Pro </span>- доступ к качественной медицине онлайн без очередей.
                         </h3>
                     </div>
                     <DoctorsSlider />
