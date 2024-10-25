@@ -124,7 +124,7 @@ const Header: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="container mx-auto mt-6 flex items-center justify-between p-4">
+        {windowWidth < 980 ?<div className="container mx-auto mt-6 flex items-center justify-between p-4">
           {/* Поисковая строка */}
           <div className="relative w-full max-w-lg">
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
@@ -153,11 +153,11 @@ const Header: React.FC = () => {
           </div>
 
           {/* Флаги */}
-          {windowWidth > 550 ? (<div className="flex items-center ml-4 space-x-2 w-100">
+          {windowWidth > 550 && windowWidth < 980 ? (<div className="flex items-center ml-4 space-x-2 w-100">
             <Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '1px solid #fff' : 'none' }} />
             <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '1px solid #fff' : 'none' }} />
           </div>) : ''}
-        </div>
+        </div> :""}
       </header>
 
 
