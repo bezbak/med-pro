@@ -2,6 +2,10 @@
     background-color: #FFAEAD;
     color: #fff;
 }
+.header_logo{
+    width: 100%;
+    height: 100%;
+}
 @media (max-width: 1280px) {
     .header_nav{
         margin: 0 20px !important;

@@ -36,9 +36,8 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between w_100p">
           {/* Логотип */}
           <div className="flex items-center header_logo">
-            <Image src="/logo.png" alt="Logo" width={72} height={72} className='sm:w-[44px] sm:h-[44px] md:w-[62px] md:h-[62px] lg:w-[72px] lg:h-[72px]' />
-            <Link href="/" className="text-sm sm:text-[24px] md:text-[24px] font-Gilroy-500 text-lightBlue pl-3 lg:text-[30px]">
-              Med-Pro
+            <Link href="/" className='block max-sm:w-[160px] max-md:w-[162px] max-lg:w-[180px] w-full w-[180px]'>
+              <Image src="/logo.png" alt="Logo" width={72} height={72} className='max-sm:w-[160px] max-md:w-[162px] max-lg:w-[180px] w-[180px]' />
             </Link>
           </div>
 
