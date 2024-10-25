@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+// @ts-ignore
 import Flag from 'react-world-flags'
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +16,6 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const handleResize = () => setWindowWidth(window.innerWidth);
-  const [active, setActive] = useState<string>('');
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
