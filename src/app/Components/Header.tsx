@@ -14,20 +14,20 @@ const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [lang, setLang] = useState<string>('RU');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const handleResize = () => setWindowWidth(window.innerWidth);
-
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ?window.innerWidth: 1200);
+  const handleResize = () => setWindowWidth(typeof window !== 'undefined' ?window.innerWidth: 1200);
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
     pathname === href || pathname?.startsWith(`${href}/`)
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
 
   return (
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
           {windowWidth > 550 ? (<div className="flex items-center ml-4 space-x-2 w-100">
             <Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '1px solid #fff' : 'none' }} />
             <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '1px solid #fff' : 'none' }} />
-          </div>): ''}
+          </div>) : ''}
         </div>
       </header>
 

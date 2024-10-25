@@ -29,7 +29,7 @@ const Accordion = ({ question }: { question: IQuestion }) => {
         </div>
       </button>
       {isOpen && (
-        <div className="text-[26px] leading-tight">{question.answer} </div>
+        <div className="text-[26px] leading-tight max-sm:text-[14px]">{question.answer} </div>
       )}
     </div>
   );
