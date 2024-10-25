@@ -10,7 +10,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import img1 from 'A:/muhammad/medpro/src/assets/images/home/mission/client1.png';
 
 interface Doctor {
   id: number;
@@ -48,28 +47,28 @@ const DoctorInfo: React.FC = () => {
     {
       id: 1,
       name: "Мухаммад Ганиханов",
-      image: `${img1.src}`,
+      image: '/Ellipse2.png',
       stars: 4,
       text: "Большое спасибо Айым Ганихановой за работу и помощь! Очень чуткий, внимательный и слушающий психолог!",
     },
     {
       id: 2,
       name: "Мухаммад Ганиханов",
-      image: `${img1.src}`,
+      image: '/Ellipse2.png',
       stars: 4,
       text: "Всего за два приема помогла разрешить мою проблему и дала полезные советы!",
     },
     {
       id: 3,
       name: "Мухаммад Ганиханов",
-      image: `${img1.src}`,
+      image: '/Ellipse2.png',
       stars: 5,
       text: "Профессионал своего дела! Очень благодарен за помощь!",
     },
     {
       id: 4,
       name: "Мухаммад Ганиханов",
-      image: `${img1.src}`,
+      image: '/Ellipse2.png',
       stars: 5,
       text: "Профессионал своего дела! Очень благодарен за помощь!",
     },
