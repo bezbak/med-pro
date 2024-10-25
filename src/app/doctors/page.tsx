@@ -39,14 +39,14 @@ const Page: React.FC = () => {
   return (
     <section id='doctorList'>
       <div className="w-full container mx-auto mt-[36px] font-gilroy">
-        <div className="bg-white max-w-full h-custom-204 pt-[32px] pl-[32px] rounded-3xl font-gilroy text-center">
-          <h1 className="text-[30px] font-bold text-left">Наши врачи</h1>
-          <p className="text-left text-[22px] lg:w-[1236px] h-[92px] line-clamp-3">
-            В <b className="text-l font-gilroy text-lightBlue">Med-Pro</b> наша команда медицинских специалистов стремится обеспечить сострадательный и индивидуальный уход. Каждый врач обладает богатым опытом и знаниями, гарантируя, что вы получите медицинское обслуживание высочайшего уровня. Познакомьтесь с нашей преданной командой ниже.
+        <div className="bg-white max-w-full p-[32px] h-full rounded-3xl font-gilroy text-center">
+          <h1 className="max-sm:text-[28px] max-sm:mb-[10px] text-[30px] font-bold text-left">Наши врачи</h1>
+          <p className="text-left max-sm:text-[18px] text-[22px] w-full break-words">
+            В <b className="text-l font-gilroy text-lightBlue ">Med-Pro</b> наша команда медицинских специалистов стремится обеспечить сострадательный и индивидуальный уход. Каждый врач обладает богатым опытом и знаниями, гарантируя, что вы получите медицинское обслуживание высочайшего уровня. Познакомьтесь с нашей преданной командой ниже.
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-y-5 gap-x-7 mt-8">
+        <div className="grid grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-10 max-sm:place-items-center mt-8">
             {doctors.map((doctor) => (
               <div
                 key={doctor.id}

@@ -100,8 +100,8 @@ const Header: React.FC = () => {
 
           <div className="flex items-center ml-4">
             {windowWidth > 980 ? (
-              <><Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '1px solid #fff' : 'none' }} />
-                <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '1px solid #fff' : 'none' }} /></>
+              <><Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'RU' ? '1' : '0.7', cursor:'pointer' }} />
+                <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'KG' ? '1' : '0.7', cursor:'pointer' }} /></>
             ) : (
               ''
             )}
@@ -154,8 +154,8 @@ const Header: React.FC = () => {
 
           {/* Флаги */}
           {windowWidth > 550 && windowWidth < 980 ? (<div className="flex items-center ml-4 space-x-2 w-100">
-            <Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '1px solid #fff' : 'none' }} />
-            <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: 56, padding: '5px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '1px solid #fff' : 'none' }} />
+            <Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'RU' ? '1' : '0.7', cursor:'pointer' }} />
+            <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'KG' ? '1' : '0.7', cursor:'pointer' }} />
           </div>) : ''}
         </div> :""}
       </header>

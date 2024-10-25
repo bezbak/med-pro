@@ -22,23 +22,23 @@ const Services = () => {
   return (
     <div className="w-full container mx-auto mt-[36px] font-gilroy">
       <div className="bg-white max-w-full h-custom-204 pt-[32px] pl-[32px] rounded-3xl font-gilroy text-center">
-        <h1 className="text-[30px] font-bold text-left">Наши услуги</h1>
-        <p className="text-left text-[22px] lg:w-[1236px] h-[92px] line-clamp-3">
+        <h1 className="max-sm:text-[26px] text-[30px] font-bold text-left">Наши услуги</h1>
+        <p className="text-left max-sm:text-[18px] text-[22px]  line-clamp-3">
           В <b className="text-l font-gilroy text-lightBlue">Med-Pro</b> наша команда медицинских специалистов стремится обеспечить сострадательный и индивидуальный уход.
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-y-5 gap-x-7 mt-8">
+      <div className="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-y-5 gap-x-7 mt-8">
         {Object.keys(serviceDetails).map((key) => {
           const service = serviceDetails[Number(key)];
           return (
-            <div key={key} className="bg-white w-custom-420 h-custom-341 shadow-lg overflow-hidden rounded-3xl relative">
+            <div key={key} className="bg-white w-full pb-4 h-full shadow-lg overflow-hidden rounded-3xl relative">
               <Link href={`/doctorInfo/${key}`} passHref>
                 <div>
                   <Image
                     src={service.image}
                     alt={service.title}
-                    width={390}
+                    width={100}
                     height={240}
                     className="w-full rounded-3xl p-4 h-50 object-cover"
                   />
