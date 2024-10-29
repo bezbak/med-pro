@@ -4,10 +4,18 @@ import Link from 'next/link';
 import './doctors.css'
 import { IoBookmarkOutline, IoStar } from 'react-icons/io5';
 import { BASE_URL } from '@/lib/utils';
+
+
+interface Service {
+  id: number;
+  name: string;
+  image: string;
+}
+
 interface Doctor {
   id: number;
   name: string;
-  specialty: string;
+  specialty: Service;
   rating: number;
   reviews_count: number;
   image: string;
@@ -21,7 +29,7 @@ const Page: React.FC = () => {
 
   // Получаем данные врачей с API
   useEffect(() => {
-    fetch(`${BASE_URL}/api/v1/doctors/`)
+    fetch(`${BASE_URL}/api/v1/doctors`)
       .then((response) => response.json())
       .then((data) => {
         setDoctors(data); // Сохраняем данные в состояние
@@ -50,7 +58,7 @@ const Page: React.FC = () => {
             {doctors.map((doctor) => (
               <div
                 key={doctor.id}
-                style={{ backgroundImage: `url(${BASE_URL}${doctor.image})` }}
+                style={{ backgroundImage: `url(${doctor.image})` }}
                 className="doctor_card shadow-lg"
               >
                 <div className="card_inner">
@@ -63,7 +71,7 @@ const Page: React.FC = () => {
                         {doctor.name}
                       </Link>
                       <Link href={`/doctors`} className="category">
-                        {doctor.specialty}
+                        {doctor.specialty.name}
                       </Link>
                     </div>
                     <span>

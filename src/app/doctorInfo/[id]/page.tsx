@@ -11,10 +11,16 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+interface Service {
+  id: number;
+  name: string;
+  image: string;
+}
+
 interface Doctor {
   id: number;
   name: string;
-  specialty: string;
+  specialty: Service;
   experience_years: number;
   rating: number;
   reviews_count: number;
@@ -78,7 +84,7 @@ const DoctorInfo: React.FC = () => {
   useEffect(() => {
     const fetchDoctorData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/`);
+        const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}`);
         if (!response.ok) {
           throw new Error('Ошибка при загрузке данных');
         }
@@ -134,15 +140,15 @@ const DoctorInfo: React.FC = () => {
       <div className="container flex max-xl:flex-col max-xl:gap-4 mt-[42px] font-gilroy mb-[60px]">
         <div className="rounded-3xl mr-[30px] max-md:m-auto max-md:w-full">
           <img
-            src={`${BASE_URL}${doctorData.image}`}
+            src={`${doctorData.image}`}
             alt={`Dr. ${doctorData.name}`}
             className="rounded-3xl  max-xl:w-full max-xl:max-h-[400px] object-cover"
           />
         </div>
         <div className="w-[796px] max-xl:w-full font-gilroy shadow-md pl-[53px] p-[52px] bg-white rounded-3xl font-gilroy">
           <h2 className="text-[36px]  tracking-wide max-sm:text-[26px]">Dr. {doctorData.name}</h2>
-          <p className="text-[28px] text-pink">{doctorData.specialty}</p>
-          <p className="text-[26px] text-[#808080] mt-[6px] ml-[1px] tracking-wide">{doctorData.experience}</p>
+          <p className="text-[28px] text-pink">{doctorData.specialty.name}</p>
+          <p className="text-[26px] text-[#808080] mt-[6px] ml-[1px] tracking-wide break-words">{doctorData.experience}</p>
           <div className="flex items-center mt-2">
             <span className="text-[24px] mr-2">{doctorData.rating}</span>
             {[...Array(5)].map((_, index) => (
