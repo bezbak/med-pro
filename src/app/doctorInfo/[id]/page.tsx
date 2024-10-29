@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Fragment, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'next/navigation';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { Transition } from '@headlessui/react';
 import AppointmentForm from '../../appointmentForm';
 import { BASE_URL } from '@/lib/utils';
