@@ -1,3 +1,4 @@
+"use client"
 import {
     CallIcon,
     InstagramIcon,
@@ -6,13 +7,38 @@ import {
 } from "@/assets/images/home/socialIcons";
 import BlockCollection from "../ui/BlockCollection";
 import Block from "../ui/Block";
-import { doctors } from "@/data/data";
 import Link from "next/link";
 import Image from "next/image";
 import ArrowRightIcon from '@/assets/images/home/ArrowRightIcon.svg';
 import ArrowTopRightIcon from '@/assets/images/home/ArrowTopRightIcon.svg';
+import { useEffect, useState } from "react";
+import { BASE_URL } from "@/lib/utils";
+
+interface Service {
+    id: number;
+    name: string;
+    image: string;
+}
 
 const Hero = () => {
+    const [services, setServices] = useState<Service[]>([]); // Храним список врачей
+    const [loading, setLoading] = useState<boolean>(true); // Состояние загрузки
+
+    // Получаем данные врачей с API
+    useEffect(() => {
+        fetch(`${BASE_URL}/api/v1/categories/`)
+            .then((response) => response.json())
+            .then((data) => {
+                setServices(data); // Сохраняем данные в состояние
+                setLoading(false); // Выключаем состояние загрузки
+            })
+            .catch((error) => {
+                console.error('Ошибка при получении данных:', error);
+                setLoading(false);
+            });
+    }, []);
+    if (loading) return <p>Загрузка данных...</p>;
+
     return (
         <section id="hero">
             <BlockCollection className="*:min-h-[400px] *:xl:min-h-[530px] mb-[60px]">
@@ -24,13 +50,13 @@ const Hero = () => {
                         Ваше здоровее, наш приоритет
                     </h2>
                     <div className="flex gap-[6px] items-center flex-wrap mb-12">
-                        {doctors.map((doctor) => (
+                        {services.slice(0,7).map((doctor) => (
                             <Link
-                                key={`doctorInfo/${doctor.id}`}
-                                href={`/doctorInfo/${doctor.id}`}  // Динамическая ссылка на страницу доктора
+                                key={`services/${doctor.id}`}
+                                href={`/services/${doctor.id}`}  // Динамическая ссылка на страницу доктора
                                 className="border border-black rounded-full px-4 py-2 lg:py-3 xl:py-4 flex gap-[7px] items-center"
                             >
-                                {doctor.title}
+                                {doctor.name}
                                 <Image src={ArrowRightIcon} width={20} height={20} alt='arrow_right'></Image>
                             </Link>
                         ))}

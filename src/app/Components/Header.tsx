@@ -20,7 +20,6 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
     pathname === href || pathname?.startsWith(`${href}/`)
   };
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', handleResize);
@@ -29,6 +28,8 @@ const Header: React.FC = () => {
       };
     }
   }, []);
+
+
 
   return (
     <div>
@@ -99,8 +100,8 @@ const Header: React.FC = () => {
 
           <div className="flex items-center ml-4">
             {windowWidth > 980 ? (
-              <><Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'RU' ? '1' : '0.7', cursor:'pointer' }} />
-                <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'KG' ? '1' : '0.7', cursor:'pointer' }} /></>
+              <><Flag code="RU" onClick={() => { setLang('RU'); }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'RU' ? '1' : '0.7', cursor:'pointer' }} />
+                <Flag code="KG" onClick={() => { setLang('KG'); }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'KG' ? '1' : '0.7', cursor:'pointer' }} /></>
             ) : (
               ''
             )}

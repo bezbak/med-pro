@@ -6,6 +6,7 @@ import { IoBookmarkOutline, IoStar } from 'react-icons/io5';
 import { BASE_URL } from '@/lib/utils';
 import { useParams } from 'next/navigation';
 
+
 interface Service {
   id: number;
   name: string;
@@ -27,6 +28,7 @@ const Page: React.FC = () => {
   const { id } = useParams(); // Получаем параметр 'id' из URL
   const [doctors, setDoctors] = useState<Doctor[]>([]); // Храним список врачей
   const [loading, setLoading] = useState<boolean>(true); // Состояние загрузки
+  const [serviceName, setServiceName] = useState<boolean>(true); // Состояние загрузки
 
   // Получаем данные врачей с API
   useEffect(() => {
@@ -34,6 +36,7 @@ const Page: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         setDoctors(data); // Сохраняем данные в состояние
+        setServiceName(data[0].specialty.name)
         setLoading(false); // Выключаем состояние загрузки
       })
       .catch((error) => {
@@ -49,7 +52,7 @@ const Page: React.FC = () => {
     <section id='doctorList'>
       <div className="w-full container mx-auto mt-[36px] font-gilroy">
         <div className="bg-white max-w-full p-[32px] h-full rounded-3xl font-gilroy text-center">
-          <h1 className="max-sm:text-[28px] max-sm:mb-[10px] text-[30px] font-bold text-left">Наши врачи</h1>
+          <h1 className="max-sm:text-[28px] max-sm:mb-[10px] text-[30px] font-bold text-left">Наши врачи - <span className='text-l font-gilroy text-lightBlue'>{serviceName}</span></h1>
           <p className="text-left max-sm:text-[18px] text-[22px] w-full break-words">
             В <b className="text-l font-gilroy text-lightBlue ">Med-Pro</b> наша команда медицинских специалистов стремится обеспечить сострадательный и индивидуальный уход. Каждый врач обладает богатым опытом и знаниями, гарантируя, что вы получите медицинское обслуживание высочайшего уровня. Познакомьтесь с нашей преданной командой ниже.
           </p>

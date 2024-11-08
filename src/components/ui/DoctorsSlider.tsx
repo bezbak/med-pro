@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {  Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -12,28 +12,41 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Transition } from '@headlessui/react';
 import AppointmentForm from '@/app/appointmentForm'; // Импортируем форму записи
+import { BASE_URL } from '@/lib/utils';
+
+interface Service {
+    id: number;
+    name: string;
+    image: string;
+  }
+  
 
 const DoctorsSlider = () => {
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedDoctor, setSelectedDoctor] = useState<IDoctor | null>(null);
+    const [selectedDoctor, setSelectedDoctor] = useState<Service | null>(null);
+    const [services, setServices] = useState<Service[]>([]); // Храним список врачей
+    const [loading, setLoading] = useState<boolean>(true); // Состояние загрузки
 
     // Открытие страницы доктора
     const handleCardClick = (doctorId: number) => {
-        router.push(`/doctorInfo/${doctorId}`);
+        router.push(`/services/${doctorId}`);
     };
 
-    // Открытие модального окна с формой записи
-    const handleOpenForm = (doctor: IDoctor) => {
-        setSelectedDoctor(doctor); // Устанавливаем выбранного доктора
-        setIsModalOpen(true);
-    };
-
-    // Закрытие модального окна
-    const handleCloseForm = () => {
-        setIsModalOpen(false);
-        setSelectedDoctor(null); // Сбрасываем выбранного доктора
-    };
+    // Получаем данные врачей с API
+    useEffect(() => {
+        fetch(`${BASE_URL}/api/v1/categories/`)
+            .then((response) => response.json())
+            .then((data) => {
+                setServices(data.slice(0,7)); // Сохраняем данные в состояние
+                setLoading(false); // Выключаем состояние загрузки
+            })
+            .catch((error) => {
+                console.error('Ошибка при получении данных:', error);
+                setLoading(false);
+            });
+    }, []);
+    if (loading) return <p>Загрузка данных...</p>;
 
     return (
         <>
@@ -42,12 +55,12 @@ const DoctorsSlider = () => {
                 spaceBetween={20}
                 slidesPerView={2.94}
                 pagination={{ clickable: true }}
-                modules={[ Pagination]} // Подключаем модули Navigation и Pagination
+                modules={[Pagination]} // Подключаем модули Navigation и Pagination
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
                         spaceBetween: 20,
-                        direction:'vertical'
+                        direction: 'vertical'
                     },
                     768: {
                         slidesPerView: 1.94,
@@ -59,55 +72,37 @@ const DoctorsSlider = () => {
                     },
                 }}
             >
-                {doctors.map((doctor) => (
+                {services.map((doctor) => (
                     <SwiperSlide key={doctor.id} className="!h-auto">
                         <SlideCard
                             doctor={doctor}
                             onCardClick={() => handleCardClick(doctor.id)}
-                            onButtonClick={() => handleOpenForm(doctor)}
                         />
                     </SwiperSlide>
                 ))}
             </Swiper>
-
-            {/* Модальное окно */}
-            <Transition appear show={isModalOpen} as={Fragment}>
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                    <div className="relative inline-block w-full max-w-[800px] h-auto p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                        {/* Отображаем форму записи */}
-                        {selectedDoctor && (
-                            <AppointmentForm isOpen={isModalOpen} onClose={handleCloseForm} />
-                        )}
-                    </div>
-                </div>
-            </Transition>
         </>
     );
 };
 
-const SlideCard = ({ doctor, onCardClick, onButtonClick }: { doctor: IDoctor; onCardClick: () => void; onButtonClick: () => void }) => {
+const SlideCard = ({ doctor, onCardClick }: { doctor: Service; onCardClick: () => void;}) => {
     return (
         <div className="bg-white p-5 rounded-2xl h-full mt-[60px]" onClick={onCardClick}>
             <div className="relative h-[240px] p-3 rounded-2xl">
-                <Image
+                <img
                     src={doctor.image}
                     className="absolute rounded-2xl w-full h-full top-0 left-0"
                     width={240}
                     height={240}
-                    alt={doctor.title}
+                    alt={doctor.name}
                 />
                 <button
-                    className="relative px-8 py-3 bg-[#9CC8FC] z-10 rounded-full border font-semibold float-right"
-                    onClick={(e) => {
-                        e.stopPropagation(); // Останавливаем всплытие, чтобы клик не активировал onCardClick
-                        onButtonClick();
-                    }}
-                >
+                    className="relative px-8 py-3 bg-[#9CC8FC] z-10 rounded-full border font-semibold float-right">
                     Записаться
                 </button>
             </div>
             <p className="text-black text-[32px] leading-tight mt-5 font-semibold text-center">
-                {doctor.title}
+                {doctor.name}
             </p>
         </div>
     );
