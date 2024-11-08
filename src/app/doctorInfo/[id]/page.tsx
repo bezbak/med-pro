@@ -16,6 +16,18 @@ interface Service {
   name: string;
   image: string;
 }
+interface User {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  profile: string;
+  phone_number: string;
+}
+interface Patient {
+  id: number;
+  user:User;
+}
 
 interface Doctor {
   id: number;
@@ -34,8 +46,7 @@ interface Doctor {
 }
 interface Review {
   id: number;
-  name: string;
-  image: string;
+  patient: Patient;
   stars: number;
   text: string;
 }
@@ -46,50 +57,25 @@ const DoctorInfo: React.FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [review, setReview] = useState<string>("");
+  const [reviews, setReviews] = useState<Review[]>();
   const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
-
-  const reviews: Review[] = [
-    {
-      id: 1,
-      name: "Мухаммад Ганиханов",
-      image: '/Ellipse2.png',
-      stars: 4,
-      text: "Большое спасибо Айым Ганихановой за работу и помощь! Очень чуткий, внимательный и слушающий психолог!",
-    },
-    {
-      id: 2,
-      name: "Мухаммад Ганиханов",
-      image: '/Ellipse2.png',
-      stars: 4,
-      text: "Всего за два приема помогла разрешить мою проблему и дала полезные советы!",
-    },
-    {
-      id: 3,
-      name: "Мухаммад Ганиханов",
-      image: '/Ellipse2.png',
-      stars: 5,
-      text: "Профессионал своего дела! Очень благодарен за помощь!",
-    },
-    {
-      id: 4,
-      name: "Мухаммад Ганиханов",
-      image: '/Ellipse2.png',
-      stars: 5,
-      text: "Профессионал своего дела! Очень благодарен за помощь!",
-    },
-  ];
-
   // Запрашиваем данные врача по ID
   useEffect(() => {
     const fetchDoctorData = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}`);
-        if (!response.ok) {
+        const reviews = await fetch(`${BASE_URL}/api/v1/reviews/?doctor=${id}`);
+        if (!response.ok && !reviews.ok) {
           throw new Error('Ошибка при загрузке данных');
         }
         const data: Doctor = await response.json();
+        const rev: Review[] = await reviews.json();
         setDoctorData(data);
+        console.log(data);
+        console.log(rev);
+        
+        setReviews(rev);
       } catch (error) {
         console.error(error);
         setIsError(true);
@@ -169,7 +155,7 @@ const DoctorInfo: React.FC = () => {
             {doctorData.description}
           </p>
           <button
-            onClick={handleAppointment}
+            onClick={()=>{handleAppointment()}}
             className="bg-lightBlue text-white text-[20px] w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
           >
             Записаться на прием
@@ -179,39 +165,39 @@ const DoctorInfo: React.FC = () => {
       <div className="container max-md:grid-cols-1 grid grid-cols-2 gap-4 p-4">
         <div className="border bg-white rounded-lg p-4">
           <h2 className="text-xl font-bold mb-2">Образование и квалификации</h2>
-          <p>
+          <p className='break-words my-4'>
             {doctorData.education}
           </p>
-          <button className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
+          <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
             Перейти в профессиональный сайт врача
-          </button>
+          </a>
         </div>
         <div className="border bg-white rounded-lg p-4">
           <h2 className="text-xl font-bold mb-2">Подход к лечению</h2>
-          <p>
+          <p className='break-words my-4'>
             {doctorData.treatment_approach}
           </p>
-          <button className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
+          <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
             Перейти в профессиональный сайт врача
-          </button>
+          </a>
         </div>
         <div className="border bg-white rounded-lg p-4">
           <h2 className="text-xl font-bold mb-2">Опыт работы</h2>
-          <p>
+          <p className='break-words my-4'>
             {doctorData.experience}
           </p>
-          <button className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
+          <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
             Перейти в профессиональный сайт врача
-          </button>
+          </a>
         </div>
         <div className="border bg-white rounded-lg p-4">
           <h2 className="text-xl font-bold mb-2">Навыки и опыт</h2>
-          <p>
+          <p className='break-words my-4'>
             {doctorData.skills}
           </p>
-          <button className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
+          <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
             Перейти в профессиональный сайт врача
-          </button>
+          </a>
         </div>
       </div>
       <div className="container mt-[42px] mb-[60px]">
@@ -229,17 +215,17 @@ const DoctorInfo: React.FC = () => {
           }}
           className="mb-8"
         >
-          {reviews.map((item) => (
+          {reviews?.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="bg-[#A7CBB6] h-[220px] gap-[10px] p-4 rounded-lg shadow-md flex flex-col">
                 <div className='flex justify-between w-full'>
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={item.patient.user.profile}
+                    alt={item.patient.user.first_name}
                     className="w-20 h-20 rounded-full mb-3"
                   />
                   <div>
-                    <h3 className="font-bold text-lg mb-1">{item.name}</h3>
+                    <h3 className="font-bold text-lg mb-1">{item.patient.user.first_name}</h3>
                     <div className="flex mb-3">
                       {Array.from({ length: 5 }).map((_, index) => (
                         <span
