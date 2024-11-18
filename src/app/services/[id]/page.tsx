@@ -5,24 +5,7 @@ import './doctors.css'
 import { IoBookmarkOutline, IoStar } from 'react-icons/io5';
 import { BASE_URL } from '@/lib/utils';
 import { useParams } from 'next/navigation';
-
-
-interface Service {
-  id: number;
-  name: string;
-  image: string;
-}
-
-interface Doctor {
-  id: number;
-  name: string;
-  specialty: Service;
-  rating: number;
-  reviews_count: number;
-  image: string;
-  consultation_cost: string;
-}
-
+import { Doctor } from '@/types/types';
 
 const Page: React.FC = () => {
   const { id } = useParams(); // Получаем параметр 'id' из URL
@@ -62,7 +45,7 @@ const Page: React.FC = () => {
             {doctors.map((doctor) => (
               <div
                 key={doctor.id}
-                style={{ backgroundImage: `url(${doctor.image})` }}
+                style={{ backgroundImage: `url(${doctor.user.profile})` }}
                 className="doctor_card shadow-lg"
               >
                 <div className="card_inner">
@@ -72,7 +55,7 @@ const Page: React.FC = () => {
                   <div className="card_text">
                     <div className="card_info">
                       <Link href={`/doctorInfo/${doctor.id}`} className="title">
-                        {doctor.name}
+                        {doctor.user.last_name} {doctor.user.first_name}
                       </Link>
                       <Link href={`/doctors`} className="category">
                         {doctor.specialty.name}

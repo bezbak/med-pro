@@ -11,7 +11,7 @@ const Features = () => {
               <div className="border-gray-300  rounded-3xl  h-[45px] flex items-center justify-center mr-[20px]">
                 <span className="text-lg font-Gilroy">{feature.number}</span>
               </div>
-              <span className="bg-Green text-white h-10 rounded-full px-4 py-2 text-sm font-Gilroy ">{feature.title}</span>
+              <span className="bg-Green text-white h-10 rounded-full ml-4 px-4 py-2 text-sm font-Gilroy ">{feature.title}</span>
             </div>
             <h3 className="text-xl font-Gilroy mb-2">{feature.heading}</h3>
           

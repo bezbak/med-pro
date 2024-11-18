@@ -8,14 +8,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './styles/header.css'
 import { usePathname } from 'next/navigation';
+import { User } from '@/types/types';
+import { BASE_URL } from '@/lib/utils';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [lang, setLang] = useState<string>('RU');
+  const [user, setUser] = useState<User>();
+  const user_id = localStorage.getItem('user_id')
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ?window.innerWidth: 1200);
-  const handleResize = () => setWindowWidth(typeof window !== 'undefined' ?window.innerWidth: 1200);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const handleResize = () => setWindowWidth(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
     pathname === href || pathname?.startsWith(`${href}/`)
@@ -27,8 +31,25 @@ const Header: React.FC = () => {
         window.removeEventListener('resize', handleResize);
       };
     }
+    
   }, []);
-
+  useEffect(()=>{
+    if (user_id) {
+      const FetchUserData = async () => {
+        try {
+          const response = await fetch(`${BASE_URL}/api/v1/users/${user_id}`);
+          if (!response.ok) {
+            throw new Error('Ошибка при загрузке данных');
+          }
+          const data: User = await response.json();
+          setUser(data);
+        } catch (error) {
+          console.error(error);
+        } 
+      };
+      FetchUserData();
+    }
+  },[user_id])
 
 
   return (
@@ -100,14 +121,14 @@ const Header: React.FC = () => {
 
           <div className="flex items-center ml-4">
             {windowWidth > 980 ? (
-              <><Flag code="RU" onClick={() => { setLang('RU'); }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'RU' ? '1' : '0.7', cursor:'pointer' }} />
-                <Flag code="KG" onClick={() => { setLang('KG'); }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'KG' ? '1' : '0.7', cursor:'pointer' }} /></>
+              <><Flag code="RU" onClick={() => { setLang('RU'); }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity: lang == 'RU' ? '1' : '0.7', cursor: 'pointer' }} />
+                <Flag code="KG" onClick={() => { setLang('KG'); }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity: lang == 'KG' ? '1' : '0.7', cursor: 'pointer' }} /></>
             ) : (
               ''
             )}
 
 
-            <button className="bg-lightBlue text-white pl-6 pr-2 py-3 rounded-full flex items-center justify-between font-gilroy">
+            {!user ? <Link href={'/register'} className="bg-lightBlue text-white pl-6 pr-2 py-3 rounded-full flex items-center justify-between font-gilroy">
               Регистрация
               <span className="ml-2 bg-white text-black px-3 py-3 rounded-full">
                 <svg
@@ -121,10 +142,12 @@ const Header: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </span>
-            </button>
+            </Link> : <Link href={`/profile/${user_id}`} className="bg-lightBlue text-white p-3 rounded-full flex items-center justify-between font-gilroy">
+            {user.profile?<img src={user.profile} alt={user.first_name} /> : user.first_name}
+            </Link>}
           </div>
         </div>
-        {windowWidth < 980 ?<div className="container mx-auto mt-6 flex items-center justify-between p-4">
+        {windowWidth < 980 ? <div className="container mx-auto mt-6 flex items-center justify-between p-4">
           {/* Поисковая строка */}
           <div className="relative w-full max-w-lg">
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
@@ -154,10 +177,10 @@ const Header: React.FC = () => {
 
           {/* Флаги */}
           {windowWidth > 550 && windowWidth < 980 ? (<div className="flex items-center ml-4 space-x-2 w-100">
-            <Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'RU' ? '1' : '0.7', cursor:'pointer' }} />
-            <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity:lang == 'KG' ? '1' : '0.7', cursor:'pointer' }} />
+            <Flag code="RU" onClick={() => { setLang('RU') }} style={{ width: lang == 'RU' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'RU' ? '2px solid #9CC8FC' : 'none', opacity: lang == 'RU' ? '1' : '0.7', cursor: 'pointer' }} />
+            <Flag code="KG" onClick={() => { setLang('KG') }} style={{ width: lang == 'KG' ? '56px' : '48px', padding: '4px', marginRight: '16px', borderRadius: '4px', border: lang == 'KG' ? '2px solid #9CC8FC' : 'none', opacity: lang == 'KG' ? '1' : '0.7', cursor: 'pointer' }} />
           </div>) : ''}
-        </div> :""}
+        </div> : ""}
       </header>
 
 

@@ -18,3 +18,56 @@ export interface TestimonialProps {
     rating: number;
   }[];
 }
+export interface Service {
+  id: number;
+  name: string;
+  image: string;
+}
+export interface User {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  profile: string;
+  phone_number: string;
+}
+export interface Patient {
+  id: number;
+  user:User;
+}
+
+export interface Doctor {
+  id: number;
+  specialty: Service;
+  user:User;
+  experience_years: number;
+  rating: number;
+  reviews_count: number;
+  consultation_cost: string;
+  description: string;
+  education: string;
+  treatment_approach: string;
+  experience: string;
+  skills: string;
+}
+export interface Review {
+  id: number;
+  patient: Patient;
+  stars: number;
+  text: string;
+}
+
+export interface RegistrationFormData {
+  email: string;
+  phone_number: string;
+  password: string;
+  password2: string;
+  last_name: string;
+  first_name: string;
+  is_doctor: boolean;
+}
+
+export interface ApiError {
+  detail?: string;
+  [key: string]: string | undefined;
+}
