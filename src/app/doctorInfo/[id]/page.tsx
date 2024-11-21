@@ -45,7 +45,7 @@ const DoctorInfo: React.FC = () => {
   }, [id]);
 
   const seoText = doctorData
-    ? `Запишитесь к доктору ${doctorData.user.first_name} ${doctorData.user.last_name}, специалисту по ${doctorData.specialty.name}, на нашем сайте: https://example.com/doctor/${id}`
+    ? `Запишитесь к доктору ${doctorData.user.first_name} ${doctorData.user.last_name}, специалисту по ${doctorData.specialty.name}, на нашем сайте: ${FRONT_URL}/doctorInfo/${id}`
     : '';
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -91,10 +91,10 @@ const DoctorInfo: React.FC = () => {
             className="rounded-3xl h-full max-xl:w-full max-xl:max-h-[400px] object-cover"
           />
         </div>
-        <div className="w-[796px] max-xl:w-full font-gilroy shadow-md pl-[53px] p-[52px] bg-white rounded-3xl font-gilroy">
+        <div className="w-[796px] max-xl:w-full font-gilroy shadow-md max-p-[52px] p-4 bg-white rounded-3xl font-gilroy">
           <h2 className="text-[36px]  tracking-wide max-sm:text-[26px]">Dr. {doctorData.user.last_name} {doctorData.user.first_name}</h2>
           <p className="text-[28px] text-pink">{doctorData.specialty.name}</p>
-          <p className="text-[26px] text-[#808080] mt-[6px] ml-[1px] tracking-wide break-words">{doctorData.experience}</p>
+          <p className="text-[26px] text-[#808080] max-sm:text-[18px] mt-[6px] ml-[1px] tracking-wide break-words">{doctorData.experience_years} лет опыта</p>
           <div className="flex items-center mt-2">
             <span className="text-[24px] mr-2">{doctorData.rating}</span>
             {[...Array(5)].map((_, index) => (
@@ -102,8 +102,7 @@ const DoctorInfo: React.FC = () => {
                 key={index}
                 xmlns="http://www.w3.org/2000/svg"
                 fill={index < doctorData.rating ? "#FFC85D" : "#E0E0E0"}
-                width="24"
-                height="24"
+                className='w-[24px]'
                 viewBox="0 0 24 24"
               >
                 <path d="M12 .587l3.668 7.431 8.2 1.191-5.935 5.788 1.4 8.172L12 18.896l-7.333 3.855 1.4-8.172-5.935-5.788 8.2-1.191z" />
@@ -111,11 +110,11 @@ const DoctorInfo: React.FC = () => {
             ))}
           </div>
           <span className='bg-[#A7CBB6] p-[10px] rounded-full mt-2 text-white font-bold text-[16px]' style={{ 'display': 'block', 'width': 'fit-content' }}>{doctorData.consultation_cost}</span>
-          <p className="w-full h-[170px] max-sm:text-[18px] text-[24px] mt-[17px] leading-7 break-words">
-            {doctorData.description}
+          <p className="w-full min-h-[170px] max-sm:text-[18px] text-[24px] mt-[17px] leading-7 break-words">
+            {doctorData.description}  
           </p>
           <Link href={`/consultation/${doctorData.id}`}
-            className="bg-lightBlue text-white text-[20px] p-5 w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
+            className="block bg-lightBlue text-white text-[20px] p-5 w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
           >
             Записаться на прием
           </Link>
@@ -128,7 +127,7 @@ const DoctorInfo: React.FC = () => {
             {doctorData.education}
           </p>
           <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
-            Перейти в профессиональный сайт врача
+            Перейти на сайт врача
           </a>
         </div>
         <div className="border bg-white rounded-lg p-4">
@@ -137,7 +136,7 @@ const DoctorInfo: React.FC = () => {
             {doctorData.treatment_approach}
           </p>
           <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
-            Перейти в профессиональный сайт врача
+            Перейти на сайт врача
           </a>
         </div>
         <div className="border bg-white rounded-lg p-4">
@@ -146,7 +145,7 @@ const DoctorInfo: React.FC = () => {
             {doctorData.experience}
           </p>
           <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
-            Перейти в профессиональный сайт врача
+            Перейти на сайт врача
           </a>
         </div>
         <div className="border bg-white rounded-lg p-4">
@@ -155,7 +154,7 @@ const DoctorInfo: React.FC = () => {
             {doctorData.skills}
           </p>
           <a href='#' className="mt-4 bg-lightBlue text-white py-2 px-4 rounded">
-            Перейти в профессиональный сайт врача
+            Перейти на сайт врача
           </a>
         </div>
       </div>

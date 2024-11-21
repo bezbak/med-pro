@@ -1,17 +1,12 @@
 "use client";
 
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { IDoctor } from '@/types/types';
-import { doctors } from '@/data/data';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Transition } from '@headlessui/react';
-import AppointmentForm from '@/app/appointmentForm'; // Импортируем форму записи
 import { BASE_URL } from '@/lib/utils';
 
 interface Service {
@@ -23,8 +18,6 @@ interface Service {
 
 const DoctorsSlider = () => {
     const router = useRouter();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedDoctor, setSelectedDoctor] = useState<Service | null>(null);
     const [services, setServices] = useState<Service[]>([]); // Храним список врачей
     const [loading, setLoading] = useState<boolean>(true); // Состояние загрузки
 

@@ -1,7 +1,15 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Doctor } from "@/types/types";
+import { useParams } from "next/navigation";
+import { BASE_URL } from "@/lib/utils";
 
 const ConsultationForm: React.FC = () => {
+  const { id } = useParams(); // Получаем параметр 'id' из URL
+  const [doctor, setDoctorData] = useState<Doctor | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
+
   const [problemDescription, setProblemDescription] = useState("");
   const [preferredContact, setPreferredContact] = useState("audio");
   const [agreements, setAgreements] = useState({
@@ -10,6 +18,26 @@ const ConsultationForm: React.FC = () => {
     contract: false
   });
 
+  useEffect(() => {
+    const fetchDoctorData = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}`);
+        if (!response.ok) {
+          throw new Error('Ошибка при загрузке данных');
+        }
+        const data: Doctor = await response.json();
+        setDoctorData(data);
+      } catch (error) {
+        console.error(error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDoctorData();
+  }, [id]);
+
   const handleSubmit = () => {
     // Логика для отправки формы
   };
@@ -17,13 +45,15 @@ const ConsultationForm: React.FC = () => {
   return (
     <div className="">
       <h2 className="text-2xl font-bold mb-4">Информация об обращении</h2>
-      <div className="flex items-center mb-4">
-        <img className="w-12 h-12 bg-gray-300 rounded-full mr-4" src="path_to_image.jpg" alt="Doctor" />
-        <div>
-          <h3 className="text-lg font-semibold">Dr. Ганижанова Айым</h3>
-          <p className="text-gray-500">Кардиолог</p>
-        </div>
-      </div>
+      {
+        !isLoading && doctor ? (<div className="flex items-center mb-4">
+          <img className="w-12 h-12 bg-gray-300 rounded-full mr-4" src={doctor.user.profile} alt="Doctor" />
+          <div>
+            <h3 className="text-lg font-semibold">Dr. {doctor.user.first_name} {doctor.user.last_name}</h3>
+            <p className="text-gray-500">{doctor.specialty.name}</p>
+          </div>
+        </div>) : <p>Загрузка данных...</p>
+      }
       <textarea
         value={problemDescription}
         onChange={(e) => setProblemDescription(e.target.value)}

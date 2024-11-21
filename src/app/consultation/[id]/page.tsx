@@ -1,6 +1,8 @@
 import SweetCalendar from "@/components/ui/SweetCalendar";
 import ConsultationForm from "@/components/ui/ConsultationForm";
+
 const AppointmentPage = () => {
+
   const work_time = "09:00-16:00"
   const schedule = {
     "2024-11-22": {
@@ -11,6 +13,7 @@ const AppointmentPage = () => {
     },
   };
 
+ 
   return (
     <section id='consultation'>
       <div className="w-full container mx-auto mt-[36px]">

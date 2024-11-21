@@ -113,7 +113,11 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
             {selectedDate && (
                 <>
                     <div className="bg-white shadow-md rounded-lg p-4 my-2">
-
+                        <h2 className="text-xl font-bold mb-4">Выберите удобное время</h2>
+                        <div className="flex my-4 items-center gap-2">
+                            <img src="/time.svg" alt="" />
+                            <span className="font-bold text-xl">Город Ош</span>
+                        </div>
                         <div className="grid grid-cols-4 gap-2">
                             {timeSlots.length > 0 ? (
                                 timeSlots.map((slot) => (
