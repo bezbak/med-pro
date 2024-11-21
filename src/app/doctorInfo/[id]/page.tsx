@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, Fragment, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'next/navigation';
-// import Image from 'next/image';
-import { Transition } from '@headlessui/react';
-import AppointmentForm from '../../appointmentForm';
-import { BASE_URL } from '@/lib/utils';
+import { BASE_URL, FRONT_URL } from '@/lib/utils';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Doctor, Review } from '@/types/types';
+import Link from 'next/link';
 
 
 const DoctorInfo: React.FC = () => {
@@ -18,7 +16,6 @@ const DoctorInfo: React.FC = () => {
   const [doctorData, setDoctorData] = useState<Doctor | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [review, setReview] = useState<string>("");
   const [reviews, setReviews] = useState<Review[]>();
   const [rating, setRating] = useState<number>(0);
@@ -35,9 +32,6 @@ const DoctorInfo: React.FC = () => {
         const data: Doctor = await response.json();
         const rev: Review[] = await reviews.json();
         setDoctorData(data);
-        console.log(data);
-        console.log(rev);
-        
         setReviews(rev);
       } catch (error) {
         console.error(error);
@@ -50,13 +44,10 @@ const DoctorInfo: React.FC = () => {
     fetchDoctorData();
   }, [id]);
 
-  const handleAppointment = () => {
-    setIsModalOpen(true);
-  };
+  const seoText = doctorData
+    ? `Запишитесь к доктору ${doctorData.user.first_name} ${doctorData.user.last_name}, специалисту по ${doctorData.specialty.name}, на нашем сайте: https://example.com/doctor/${id}`
+    : '';
 
-  const handleCloseForm = () => {
-    setIsModalOpen(false);
-  };
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
   };
@@ -86,6 +77,12 @@ const DoctorInfo: React.FC = () => {
 
   return (
     <section id="doctorInfo">
+      <head>
+        <meta name="description" content={seoText} />
+        <meta property="og:title" content={`Доктор ${doctorData.user.first_name} ${doctorData.user.last_name} — ${doctorData.specialty.name}`} />
+        <meta property="og:description" content={seoText} />
+        <meta property="og:url" content={`${FRONT_URL}doctorInfo/${doctorData.id}`} />
+      </head>
       <div className="container flex max-xl:flex-col max-xl:gap-4 mt-[42px] font-gilroy mb-[60px]">
         <div className="rounded-3xl mr-[30px] max-md:m-auto max-md:w-full">
           <img
@@ -117,12 +114,11 @@ const DoctorInfo: React.FC = () => {
           <p className="w-full h-[170px] max-sm:text-[18px] text-[24px] mt-[17px] leading-7 break-words">
             {doctorData.description}
           </p>
-          <button
-            onClick={()=>{handleAppointment()}}
-            className="bg-lightBlue text-white text-[20px] w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
+          <Link href={`/consultation/${doctorData.id}`}
+            className="bg-lightBlue text-white text-[20px] p-5 w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
           >
             Записаться на прием
-          </button>
+          </Link>
         </div>
       </div>
       <div className="container max-md:grid-cols-1 grid grid-cols-2 gap-4 p-4">
@@ -215,8 +211,8 @@ const DoctorInfo: React.FC = () => {
               <span
                 key={index}
                 className={`text-2xl cursor-pointer ${(hoverRating || rating) > index
-                    ? "text-yellow-400"
-                    : "text-gray-400"
+                  ? "text-yellow-400"
+                  : "text-gray-400"
                   }`}
                 onClick={() => handleStarClick(index)}
                 onMouseEnter={() => handleStarHover(index)}
@@ -243,11 +239,6 @@ const DoctorInfo: React.FC = () => {
           </button>
         </form>
       </div>
-      <Transition appear show={isModalOpen} as={Fragment}>
-        <div className="relative inline-block w-full max-w-[800px] h-auto p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-          <AppointmentForm isOpen={isModalOpen} onClose={handleCloseForm} />
-        </div>
-      </Transition>
     </section>
   );
 };
