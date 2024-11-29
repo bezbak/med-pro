@@ -1,8 +1,11 @@
 'use client'
+import {type ClassDictionary } from "clsx"
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
 dayjs.locale("ru");
+import '../home/styles/info.css'
+import { pushForm, getForm } from "@/lib/utils";
 
 type WorkTime = {
     [date: string]: {
@@ -14,10 +17,29 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
     const [currentMonth, setCurrentMonth] = useState(dayjs());
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
+    const [data, setData] = useState<ClassDictionary | null>(null);
     const [timeSlots, setTimeSlots] = useState<string[]>([]);
 
     const daysOfWeek = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
     const today = dayjs();
+
+    useEffect(()=>{
+        setData(getForm())
+    },[])
+
+    useEffect(()=>{
+        setSelectedDate(data?.day);
+        setSelectedTime(data?.time);
+
+    },[data])
+    useEffect(()=>{
+        let data = {'day': selectedDate}
+        pushForm(data)
+    },[selectedDate])
+    useEffect(()=>{
+        let data = {'time': selectedTime}
+        pushForm(data)
+    },[selectedTime])
 
     // Генерация временных слотов через useEffect
     useEffect(() => {
@@ -36,6 +58,8 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
 
         setTimeSlots(slots); // Обновляем список временных слотов
     }, [work_time]);
+
+    
 
     const getDaysInMonth = (month: dayjs.Dayjs) => {
         const startOfMonth = month.startOf("month");
@@ -61,15 +85,15 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
     };
 
     return (
-        <div className=" w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">Выбрать дату</h2>
-            <div className="bg-white shadow-md rounded-lg p-4 my-2">
+        <div className="flex flex-col gap-5 w-full max-w-[40%] ">
+            <div className="bg-white shadow-md custom-rounded py-6 px-10 my-2">
+                <h2 className="text-xl font-bold mb-4">Выбрать дату</h2>
 
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex gap-4 items-center mb-4">
                     <button
                         onClick={() => handleMonthChange(-1)}
-                        className={`text-lg ${currentMonth.month() === today.month() ? "font-bold" : "font-normal"
-                            }`}
+                        className={`text-xl font-[500]`}
+                        style={currentMonth.month() === today.month() ? { opacity: '1' } : { opacity: '0.5' }}
                         disabled={currentMonth.month() === today.month()}
                     >
                         {today.format("MMMM").charAt(0).toUpperCase() +
@@ -77,9 +101,9 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
                     </button>
                     <button
                         onClick={() => handleMonthChange(1)}
-                        className={`text-lg ${currentMonth.month() === today.add(1, "month").month()
-                            ? "font-bold"
-                            : "font-normal"
+                        className={`text-xl font-[500] ${currentMonth.month() === today.add(1, "month").month()
+                            ? "opacity-1"
+                            : "opacity-50"
                             }`}
                         disabled={currentMonth.month() === today.add(1, "month").month()}
                     >
@@ -87,9 +111,9 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
                             today.add(1, "month").format("MMMM").slice(1)}
                     </button>
                 </div>
-                <div className="grid grid-cols-7 text-center gap-2 mb-6">
+                <div className="grid grid-cols-7 gap-2 mb-6">
                     {daysOfWeek.map((day) => (
-                        <div key={day} className="font-semibold text-gray-500">
+                        <div key={day} className="p-3 font-semibold text-gray-500">
                             {day}
                         </div>
                     ))}
@@ -97,7 +121,7 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
                         <button
                             key={date.toString()}
                             onClick={() => setSelectedDate(date.format("YYYY-MM-DD"))}
-                            className={`py-2 rounded-full ${selectedDate === date.format("YYYY-MM-DD")
+                            className={`p-2 rounded-full font-semibold max-w-[40px] max-h-[40px] ${selectedDate === date.format("YYYY-MM-DD")
                                 ? "bg-pink text-white"
                                 : date.isBefore(today, "day")
                                     ? "text-gray-400 cursor-not-allowed"
@@ -112,7 +136,7 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
             </div>
             {selectedDate && (
                 <>
-                    <div className="bg-white shadow-md rounded-lg p-4 my-2">
+                    <div className="bg-white shadow-md custom-rounded py-6 px-10 my-2">
                         <h2 className="text-xl font-bold mb-4">Выберите удобное время</h2>
                         <div className="flex my-4 items-center gap-2">
                             <img src="/time.svg" alt="" />

@@ -17,8 +17,8 @@ const AppointmentPage = () => {
   return (
     <section id='consultation'>
       <div className="w-full container mx-auto mt-[36px]">
-        <div className="p-8 rounded-lg">
-          <div className="grid grid-cols-2 gap-8">
+        <div className="py-8 rounded-lg">
+          <div className="flex align-middle justify-center gap-12">
             {/* Выбор даты */}
             <SweetCalendar schedule={schedule} work_time={work_time} />
 

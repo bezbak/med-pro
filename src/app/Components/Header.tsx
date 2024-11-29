@@ -59,7 +59,7 @@ const Header: React.FC = () => {
           {/* Логотип */}
           <div className="flex items-center header_logo">
             <Link href="/" className='block max-sm:w-[160px] max-md:w-[162px] max-lg:w-[180px] w-full w-[180px]'>
-              <Image src="/logo.png" alt="Logo" width={72} height={72} className='max-sm:w-[160px] max-md:w-[162px] max-lg:w-[180px] w-[180px]' />
+              <Image src="/logo.svg" alt="Logo" width={72} height={72} className='max-sm:w-[160px] max-md:w-[162px] max-lg:w-[180px] w-[180px]' />
             </Link>
           </div>
 
@@ -106,7 +106,7 @@ const Header: React.FC = () => {
           {/* Поиск врачей */}
           {windowWidth > 980 ? (<div className="search relative w-full md:w-[294px] md:mr-[12px] lg:w-[294px] lg:mr-0">
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-              <Image src="/search.png" alt="Search Icon" width={22} height={22} />
+              <Image src="/Search.png" alt="Search Icon" width={22} height={22} />
             </div>
             <input
               type="text"

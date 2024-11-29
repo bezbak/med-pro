@@ -29,3 +29,17 @@
         line-height: 17.15px;
     }
 }
+.custom-rounded {
+    border-radius: 30px;
+}
+.custom-rounded-mini{
+    border-radius: 10px;
+}
+.custom-active-btn{
+    color: white !important;
+    background-color: rgb(156, 200, 252);
+    border: rgb(156, 200, 252);
+}
+.custom-active-btn svg{
+    fill: white;
+}

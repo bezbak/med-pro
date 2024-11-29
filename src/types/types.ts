@@ -33,13 +33,13 @@ export interface User {
 }
 export interface Patient {
   id: number;
-  user:User;
+  user: User;
 }
 
 export interface Doctor {
   id: number;
   specialty: Service;
-  user:User;
+  user: User;
   experience_years: number;
   rating: number;
   reviews_count: number;
@@ -70,4 +70,22 @@ export interface RegistrationFormData {
 export interface ApiError {
   detail?: string;
   [key: string]: string | undefined;
+}
+export interface Consultation {
+  id: number;
+  date: string;
+  time: string;
+  consul_type: string;
+  wh_number: string;
+  status: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
+  patient: number;
+  doctor: Doctor;
+}
+export interface PatientData {
+  medical_history: string | null;
+  user: User;
+  consultations: Consultation[];
 }

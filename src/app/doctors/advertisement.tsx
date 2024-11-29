@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import logo from '../../../public/advertisement/logo.png';
 import TommorowTech from '../../../public/advertisement/TommorowTech.png';
 
 const Advertisement = () => {
@@ -12,7 +11,7 @@ const Advertisement = () => {
         </div>
         <p className=' text-white'>Реклама</p>
       </div>
-      <Image src={logo} width={120} height={120} alt="Логотип 1" className='mr-[42px]' />
+      <Image src={'/logo.svg'} width={120} height={120} alt="Логотип 1" className='mr-[42px]' />
       <Image src={TommorowTech} width={667} height={56} alt="Логотип 2" className="pl-[8px] pb-[10px]" />
     </div>
   );
