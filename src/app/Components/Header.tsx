@@ -8,14 +8,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './styles/header.css'
 import { usePathname } from 'next/navigation';
-import { User } from '@/types/types';
+import { Patient } from '@/types/types';
 import { BASE_URL } from '@/lib/utils';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [lang, setLang] = useState<string>('RU');
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<Patient>();
   const user_id = localStorage.getItem('user_id')
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -31,13 +31,20 @@ const Header: React.FC = () => {
         window.removeEventListener('resize', handleResize);
       };
     }
-    
+
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
+    const accessToken = localStorage.getItem("access_token");
+
     if (user_id) {
       const FetchUserData = async () => {
         try {
-          const response = await fetch(`${BASE_URL}/api/v1/users/${user_id}`);
+          const response = await fetch(`${BASE_URL}/api/v1/patients/${user_id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${accessToken}`, // Добавляем токен в заголовок
+            },
+          });
           if (!response.ok) {
             throw new Error('Ошибка при загрузке данных');
           }
@@ -45,11 +52,11 @@ const Header: React.FC = () => {
           setUser(data);
         } catch (error) {
           console.error(error);
-        } 
+        }
       };
       FetchUserData();
     }
-  },[user_id])
+  }, [user_id])
 
 
   return (
@@ -143,7 +150,7 @@ const Header: React.FC = () => {
                 </svg>
               </span>
             </Link> : <Link href={`/profile/${user_id}`} className="bg-lightBlue text-white p-3 rounded-full flex items-center justify-between font-gilroy">
-            {user.profile?<img src={user.profile} alt={user.first_name} /> : user.first_name}
+              {user.user.profile ? <img src={user.user.profile} alt={user.user.first_name} /> : user.user.first_name}
             </Link>}
           </div>
         </div>

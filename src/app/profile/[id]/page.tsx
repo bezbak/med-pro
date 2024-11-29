@@ -68,7 +68,7 @@ export default function Profile({ }: Props) {
         return <p>Загрузка данных...</p>;
     }
     const { user, consultations } = patientData;
-    
+
     return (
         <section id='doctorList'>
             <div className="w-full container mx-auto mt-[36px] font-gilroy">
@@ -88,24 +88,30 @@ export default function Profile({ }: Props) {
                                 Редактировать профиль
                             </button>
                         </div>
-                        <div className="hidden bg-[#FFAEAD] border border-red-300 text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
-                            <h3 className="text-[32px] font-semibold">Вы пока не записались на консультацию</h3>
-                            <p className="mt-2 text-[24px]">
-                                Вы пока не записались на консультацию. Запишитесь, перейдя в каталог.
-                            </p>
-                            <Link href={'/doctors'} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
-                                Записаться на консультацию
-                            </Link>
-                        </div>
-                        <div className="bg-[#A7CBB6] border border-[#A7CBB6] text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
-                            <h3 className="text-[32px] font-semibold">Напоминает что вы записывались на консультацию</h3>
-                            <p className="mt-2 text-[24px]">
-                                {consuleType}-{date} у доктора {consultations[0].doctor.user.first_name}
-                            </p>
-                            <Link href={`/profile/${id}/catalog`} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
-                                Перейти в каталог
-                            </Link>
-                        </div>
+                        {
+                            patientData.consultations && patientData.consultations.length > 0 ? (
+
+                                <div className="bg-[#A7CBB6] border border-[#A7CBB6] text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
+                                    <h3 className="text-[32px] font-semibold">Напоминает что вы записывались на консультацию</h3>
+                                    <p className="mt-2 text-[24px]">
+                                        {consuleType}-{date} у доктора {consultations[0].doctor.user.first_name}
+                                    </p>
+                                    <Link href={`/profile/${id}/catalog`} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
+                                        Перейти в каталог
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div className="hidden bg-[#FFAEAD] border border-red-300 text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
+                                    <h3 className="text-[32px] font-semibold">Вы пока не записались на консультацию</h3>
+                                    <p className="mt-2 text-[24px]">
+                                        Вы пока не записались на консультацию. Запишитесь, перейдя в каталог.
+                                    </p>
+                                    <Link href={'/doctors'} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
+                                        Записаться на консультацию
+                                    </Link>
+                                </div>
+                            )
+                        }
                     </div>
 
                     {/* Правая секция: Консультация */}
