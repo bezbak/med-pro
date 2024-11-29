@@ -89,7 +89,7 @@ export default function Profile({ }: Props) {
                             </button>
                         </div>
                         {
-                            patientData.consultations && patientData.consultations.length > 0 ? (
+                            consultations && consultations.length > 0 ? (
 
                                 <div className="bg-[#A7CBB6] border border-[#A7CBB6] text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
                                     <h3 className="text-[32px] font-semibold">Напоминает что вы записывались на консультацию</h3>
