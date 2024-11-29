@@ -48,7 +48,7 @@ export default function Profile({ }: Props) {
         }
     }, [patientData])
     useEffect(() => {
-        if (consultations2 != null && user != null) {
+        if (consultations2 != null && user != null && consultations2.length >0) {
 
             const consul_type = consultations2[0].consul_type;
 

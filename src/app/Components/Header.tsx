@@ -48,7 +48,7 @@ const Header: React.FC = () => {
           if (!response.ok) {
             throw new Error('Ошибка при загрузке данных');
           }
-          const data: User = await response.json();
+          const data: Patient = await response.json();
           setUser(data);
         } catch (error) {
           console.error(error);
