@@ -44,6 +44,8 @@ export default function Profile({ }: Props) {
     useEffect(() => {
         if (patientData != null) {
             setConsultations(patientData.consultations)
+            console.log(patientData.consultations.length);
+            
             setUser(patientData.user)
         }
     }, [patientData])
@@ -51,6 +53,8 @@ export default function Profile({ }: Props) {
         if (consultations2 != null && user != null && consultations2.length >0) {
 
             const consul_type = consultations2[0].consul_type;
+            console.log(consultations2);
+            
 
             setConsuleType(data_types[consul_type as keyof typeof data_types])
             // Соединяем дату и время в одну строку
@@ -74,8 +78,8 @@ export default function Profile({ }: Props) {
             <div className="w-full container mx-auto mt-[36px] font-gilroy">
                 <div className="flex flex-col gap-6 p-6 w-full">
                     {/* Левая секция: Профиль */}
-                    <div className="flex justify-between rounded-lg w-full gap-4">
-                        <div className='flex flex-col bg-white shadow-md rounded-lg w-1/2 h-full p-6 min-h-[300px]'>
+                    <div className="flex max-md:flex-col justify-between rounded-lg w-full gap-4">
+                        <div className='flex flex-col bg-white shadow-md rounded-lg max-md:w-full w-1/2 h-full p-6 min-h-[300px]'>
                             <img
                                 src={user.profile} // замените на путь к изображению
                                 alt="User Profile"
@@ -89,9 +93,9 @@ export default function Profile({ }: Props) {
                             </button>
                         </div>
                         {
-                            consultations && consultations.length > 0 ? (
+                            consultations && patientData.consultations.length > 0 ? (
 
-                                <div className="bg-[#A7CBB6] border border-[#A7CBB6] text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
+                                <div className="bg-[#A7CBB6] border border-[#A7CBB6] text-white p-6 rounded-lg shadow-md max-md:w-full w-1/2 h-full min-h-[300px]">
                                     <h3 className="text-[32px] font-semibold">Напоминает что вы записывались на консультацию</h3>
                                     <p className="mt-2 text-[24px]">
                                         {consuleType}-{date} у доктора {consultations[0].doctor.user.first_name}
@@ -101,7 +105,7 @@ export default function Profile({ }: Props) {
                                     </Link>
                                 </div>
                             ) : (
-                                <div className="hidden bg-[#FFAEAD] border border-red-300 text-white p-6 rounded-lg shadow-md w-1/2 h-full min-h-[300px]">
+                                <div className="bg-[#FFAEAD] border border-red-300 text-white p-6 rounded-lg shadow-md max-md:w-full w-1/2 h-full min-h-[300px]">
                                     <h3 className="text-[32px] font-semibold">Вы пока не записались на консультацию</h3>
                                     <p className="mt-2 text-[24px]">
                                         Вы пока не записались на консультацию. Запишитесь, перейдя в каталог.

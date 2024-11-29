@@ -85,7 +85,7 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
     };
 
     return (
-        <div className="flex flex-col gap-5 w-full max-w-[40%] ">
+        <div className="flex flex-col gap-5 w-full min-md:max-w-[40%] max-md:w-full ">
             <div className="bg-white shadow-md custom-rounded py-6 px-10 my-2">
                 <h2 className="text-xl font-bold mb-4">Выбрать дату</h2>
 

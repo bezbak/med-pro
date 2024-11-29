@@ -117,7 +117,7 @@ const ConsultationForm: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[60%] pt-8">
+    <div className="w-full min-md:max-w-[60%] pt-8 max-md:w-full">
       <h2 className="text-2xl font-semibold mb-4">Информация об обращении</h2>
       {
         !isLoading && doctor ? (<div className="flex items-center mb-4">
