@@ -25,7 +25,7 @@ const CombinedSection = () => {
         <div className="absolute inset-0 flex justify-center items-center">
           <div className="bg-[#B3D4F2] p-4 rounded-full cursor-pointer">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 5.63604V18.364C8 19.5 9.2925 20.136 10.2929 19.4142L16.2929 15.4142C17.2925 14.6925 17.2925 13.3075 16.2929 12.5858L10.2929 8.58579C9.2925 7.86396 8 8.5 8 9.63604Z" fill="white" />
+              <path fillRule="evenodd" clipRule="evenodd" d="M8 5.63604V18.364C8 19.5 9.2925 20.136 10.2929 19.4142L16.2929 15.4142C17.2925 14.6925 17.2925 13.3075 16.2929 12.5858L10.2929 8.58579C9.2925 7.86396 8 8.5 8 9.63604Z" fill="white" />
             </svg>
           </div>
         </div>

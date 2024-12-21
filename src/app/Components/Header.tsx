@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 // @ts-ignore
 import Flag from 'react-world-flags'
 import Image from 'next/image';
@@ -10,15 +10,21 @@ import './styles/header.css'
 import { usePathname } from 'next/navigation';
 import { Patient } from '@/types/types';
 import { BASE_URL } from '@/lib/utils';
+import { useSearchParams } from 'next/navigation';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [lang, setLang] = useState<string>('RU');
   const [user, setUser] = useState<Patient>();
   const user_id = localStorage.getItem('user_id')
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const query = searchParams.get('query');;
+
   const handleResize = () => setWindowWidth(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
@@ -57,6 +63,30 @@ const Header: React.FC = () => {
       FetchUserData();
     }
   }, [user_id])
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'; // Отключаем прокрутку
+    } else {
+      document.body.style.overflow = ''; // Восстанавливаем прокрутку
+    }
+
+    // Очистка эффекта
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+  useEffect(() => {
+    if (query) {
+      setSearchTerm(query)
+    }
+  }, [query]);
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== '') {
+      router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+      setSearchTerm(''); // Очистить строку поиска после отправки
+    }
+  };
 
 
   return (
@@ -82,6 +112,54 @@ const Header: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
+          {isMenuOpen && (
+            <div className="absolute top-0 right-[-20px;] h-[110vh] w-[105%] bg-white shadow-lg rounded-lg z-50 flex flex-col gap-5 items-end py-[3.25rem] px-10">
+              <button className="md:hidden right-0" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
+                </svg>
+              </button>
+              <nav className="flex flex-col w-full gap-2">
+                {!user ?
+                  <Link
+                    href="/register"
+                    className={`py-2 w-full  px-4 text-black rounded-lg transition-colors border-2 duration-300 ${pathname === '/' ? 'bg-lightBlue text-white' : ''}`}
+                    onClick={() => handleNavClick('/')}
+                  >
+                    Регистрация/Войти
+                  </Link>
+                  :
+                  <Link href={`/profile/${user_id}`} className="text-white w-full h-20 object-cover rounded-full flex items-center justify-between font-gilroy">
+                    {user.user.profile ? <div className='flex items-center gap-2 w-full h-20 object-cover justify-end'>
+                      <span className='text-black'>{user.user.first_name}</span>
+                      <img src={user.user.profile} className='w-30 h-30 object-cover h-20' alt={user.user.first_name} />
+                    </div> : user.user.first_name}
+                  </Link>}
+
+                <Link
+                  href="/"
+                  className={`py-2 w-full px-4 text-black rounded-lg transition-colors border-2 duration-300 ${pathname === '/' ? 'bg-lightBlue text-white' : ''}`}
+                  onClick={() => handleNavClick('/')}
+                >
+                  Главная
+                </Link>
+                <Link
+                  href="/services"
+                  className={`py-2 w-full px-4 text-black rounded-lg transition-colors border-2 duration-300 ${pathname === '/services' ? 'bg-lightBlue text-white' : ''}`}
+                  onClick={() => handleNavClick('/services')}
+                >
+                  Услуги
+                </Link>
+                <Link
+                  href="/about"
+                  className={`py-2 w-full px-4 text-black rounded-lg transition-colors border-2 duration-300 ${pathname === '/about' ? 'bg-lightBlue text-white' : ''}`}
+                  onClick={() => handleNavClick('/about')}
+                >
+                  О нас
+                </Link>
+              </nav>
+            </div>
+          )}
         </div>
 
         <div className="hidden md:flex items-center justify-between">
@@ -111,18 +189,20 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Поиск врачей */}
-          {windowWidth > 980 ? (<div className="search relative w-full md:w-[294px] md:mr-[12px] lg:w-[294px] lg:mr-0">
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-              <Image src="/Search.png" alt="Search Icon" width={22} height={22} />
-            </div>
-            <input
-              type="text"
-              placeholder="Найдите доктора по имени или специальности"
-              value={searchTerm}
-              // onChange={handleSearchChange}
-              className="h-12 md:h-16 w-full pl-12 pr-4 text-sm sm:text-base border rounded-full focus:outline-none focus:ring-2 focus:ring-lightBlue"
-            />
-          </div>) : (
+          {windowWidth > 980 ? (
+            <form onSubmit={handleSearchSubmit} className="search relative w-full md:w-[294px] md:mr-[12px] lg:w-[294px] lg:mr-0">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                <Image src="/Search.png" alt="Search Icon" width={22} height={22} />
+              </div>
+              <input
+                type="text"
+                placeholder="Найдите доктора по имени или специальности"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="h-12 md:h-16 w-full pl-12 pr-4 text-sm sm:text-base border rounded-full focus:outline-none focus:ring-2 focus:ring-lightBlue"
+              />
+            </form>
+          ) : (
             ''
           )}
 
@@ -156,7 +236,7 @@ const Header: React.FC = () => {
         </div>
         {windowWidth < 980 ? <div className="container mx-auto mt-6 flex items-center justify-between p-4">
           {/* Поисковая строка */}
-          <div className="relative w-full max-w-lg">
+          <form onSubmit={handleSearchSubmit} className="relative w-full max-w-lg">
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +260,7 @@ const Header: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full h-12 pl-12 pr-4 rounded-full border border-gray-300 focus:ring-2 focus:ring-lightBlue focus:outline-none transition"
             />
-          </div>
+          </form>
 
           {/* Флаги */}
           {windowWidth > 550 && windowWidth < 980 ? (<div className="flex items-center ml-4 space-x-2 w-100">

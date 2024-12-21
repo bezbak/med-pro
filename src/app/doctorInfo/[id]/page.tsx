@@ -20,6 +20,7 @@ const DoctorInfo: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>();
   const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   // Запрашиваем данные врача по ID
   useEffect(() => {
     const fetchDoctorData = async () => {
@@ -51,14 +52,6 @@ const DoctorInfo: React.FC = () => {
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
   };
-
-  // Обработчик отправки формы
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Отзыв отправлен:", review, "Рейтинг:", rating);
-    setReview("");
-    setRating(0); // Сбрасываем рейтинг после отправки
-  };
   const handleStarClick = (index: number) => {
     setRating(index + 1); // Устанавливаем рейтинг на основе нажатой звезды
   };
@@ -69,6 +62,60 @@ const DoctorInfo: React.FC = () => {
 
   const handleStarMouseLeave = () => {
     setHoverRating(null); // Сбрасываем hover эффект
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const patientId = localStorage.getItem('user_id')
+
+    if (!rating || !review.trim()) {
+      alert("Пожалуйста, заполните все поля и выберите рейтинг.");
+      return;
+    }
+
+    const payload = {
+      patient_id: patientId,
+      text: review,
+      stars: rating,
+      doctor: id,
+    };
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await fetch(`${BASE_URL}/api/v1/reviews/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Ошибка при отправке данных:", errorData);
+        alert("Произошла ошибка при отправке данных.");
+        return;
+      }
+
+      const responseData = await response.json();
+      console.log("Успешно отправлено:", responseData);
+
+      // Сброс формы после успешной отправки
+      setRating(0);
+      setReview("");
+      const reviews = await fetch(`${BASE_URL}/api/v1/reviews/?doctor=${id}`);
+      if (!reviews.ok) {
+        throw new Error('Ошибка при загрузке данных');
+      }
+      const rev: Review[] = await reviews.json();
+      setReviews(rev);
+    } catch (error) {
+      console.error("Ошибка сети:", error);
+      alert("Не удалось отправить отзыв. Проверьте соединение с интернетом.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
 
@@ -111,7 +158,7 @@ const DoctorInfo: React.FC = () => {
           </div>
           <span className='bg-[#A7CBB6] p-[10px] rounded-full mt-2 text-white font-bold text-[16px]' style={{ 'display': 'block', 'width': 'fit-content' }}>{doctorData.consultation_cost}</span>
           <p className="w-full min-h-[170px] max-sm:text-[18px] text-[24px] mt-[17px] leading-7 break-words">
-            {doctorData.description}  
+            {doctorData.description}
           </p>
           <Link href={`/consultation/${doctorData.id}`}
             className="block bg-lightBlue text-white text-[20px] p-5 w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
@@ -209,10 +256,7 @@ const DoctorInfo: React.FC = () => {
             {Array.from({ length: 5 }).map((_, index) => (
               <span
                 key={index}
-                className={`text-2xl cursor-pointer ${(hoverRating || rating) > index
-                  ? "text-yellow-400"
-                  : "text-gray-400"
-                  }`}
+                className={`text-2xl cursor-pointer ${(hoverRating || rating) > index ? "text-yellow-400" : "text-gray-400"}`}
                 onClick={() => handleStarClick(index)}
                 onMouseEnter={() => handleStarHover(index)}
                 onMouseLeave={handleStarMouseLeave}
@@ -232,9 +276,11 @@ const DoctorInfo: React.FC = () => {
 
           <button
             type="submit"
-            className="bg-[#FFAEAD] text-white py-2 px-6 rounded-full  hover:text-pink hover:bg-[#fff] hover:border-[#FFAEAD] transition-colors ml-auto cursor-pointer"
+            disabled={isSubmitting}
+            className={`bg-[#FFAEAD] text-white py-2 px-6 rounded-full hover:text-pink hover:bg-[#fff] hover:border-[#FFAEAD] transition-colors ml-auto cursor-pointer ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+              }`}
           >
-            Отправить
+            {isSubmitting ? "Отправка..." : "Отправить"}
           </button>
         </form>
       </div>
