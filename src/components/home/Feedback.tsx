@@ -23,7 +23,7 @@ const Feedback = (props: Props) => {
                         <form className="flex flex-col gap-8">
                             <div className="flex flex-col gap-5">
                                 <Input placeholder="Ваше имя" />
-                                <Input placeholder="Ваш e-mail " />
+                                <Input placeholder="Ваш номер телефона " />
                                 <TextArea
                                     placeholder="Ваше cообщение"
                                     className="max-h-[120px] min-h-[120px]"
