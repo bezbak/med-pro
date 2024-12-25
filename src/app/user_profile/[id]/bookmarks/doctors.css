@@ -1,0 +1,67 @@
+.doctor_card{
+    max-width: 310px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card_inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 16px 16px 8px 16px;
+    min-height: 354px;
+}
+.card_bookmark{
+    align-self: flex-end;
+    width: 44px;
+    height: 50px;
+    background-color: #FFFFFF4D;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+.card_bookmark svg{
+    width: 24px;
+    height: 24px;
+    margin: auto;
+}
+.card_bookmark svg path{
+    transition: all 0.5s, stroke 0.3s;
+}
+.card_bookmark:hover svg path {
+    fill: #9CC8FC; /* Заливаем цветом */
+    stroke: #9CC8FC; /* Изменяем цвет обводки */
+}
+.card_text{
+    display: flex;
+    background-color: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.card_info{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.card_info .title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+}
+.card_info .category{
+    color: #9CC8FC;
+}
+.card_text span{
+    display: flex;
+    align-items: baseline;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 4px;
+}

@@ -46,7 +46,7 @@ const Header: React.FC = () => {
     if (user_id) {
       const FetchUserData = async () => {
         try {
-          if (localStorage.getItem('is_doctor')) {
+          if (localStorage.getItem('is_doctor') == 'true') {
 
             const response = await fetch(`${BASE_URL}/api/v1/doctors/${user_id}`, {
               headers: {
@@ -131,7 +131,7 @@ const Header: React.FC = () => {
             <div className="absolute top-0 right-[-20px;] h-[110vh] w-[105%] bg-white shadow-lg rounded-lg z-50 flex flex-col gap-5 items-end py-[3.25rem] px-10">
               <button className="md:hidden right-0" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
+                  <path stroke="currentColor" strokeLinejoin="round"   strokeWidth="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                 </svg>
               </button>
               <nav className="flex flex-col w-full gap-2">
