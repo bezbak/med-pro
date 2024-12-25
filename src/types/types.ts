@@ -10,6 +10,7 @@ export interface IQuestion {
   question: string;
   answer: string;
 }
+
 export interface TestimonialProps {
   testimonials: {
     name: string;
@@ -50,6 +51,19 @@ export interface Doctor {
   experience: string;
   skills: string;
 }
+export interface Consultation {
+  id: number;
+  date: string;
+  time: string;
+  consul_type: string;
+  wh_number: string;
+  status: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
+  patient: number;
+  doctor: Doctor;
+}
 export interface Review {
   id: number;
   patient: Patient;
@@ -71,19 +85,7 @@ export interface ApiError {
   detail?: string;
   [key: string]: string | undefined;
 }
-export interface Consultation {
-  id: number;
-  date: string;
-  time: string;
-  consul_type: string;
-  wh_number: string;
-  status: string;
-  notes: string;
-  created_at: string;
-  updated_at: string;
-  patient: number;
-  doctor: Doctor;
-}
+
 export interface PatientData {
   medical_history: string | null;
   user: User;

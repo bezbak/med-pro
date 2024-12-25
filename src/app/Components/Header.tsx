@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './styles/header.css'
 import { usePathname } from 'next/navigation';
-import { Patient } from '@/types/types';
+import { Doctor, Patient } from '@/types/types';
 import { BASE_URL } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 
@@ -20,6 +20,7 @@ const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [lang, setLang] = useState<string>('RU');
   const [user, setUser] = useState<Patient>();
+  const [doctor, setDoctor] = useState<Doctor>();
   const user_id = localStorage.getItem('user_id')
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -45,17 +46,32 @@ const Header: React.FC = () => {
     if (user_id) {
       const FetchUserData = async () => {
         try {
-          const response = await fetch(`${BASE_URL}/api/v1/patients/${user_id}`, {
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${accessToken}`, // Добавляем токен в заголовок
-            },
-          });
-          if (!response.ok) {
-            throw new Error('Ошибка при загрузке данных');
+          if (localStorage.getItem('is_doctor')) {
+
+            const response = await fetch(`${BASE_URL}/api/v1/doctors/${user_id}`, {
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`, // Добавляем токен в заголовок
+              },
+            });
+            if (!response.ok) {
+              throw new Error('Ошибка при загрузке данных');
+            }
+            const data: Doctor = await response.json();
+            setDoctor(data);
+          } else {
+            const response = await fetch(`${BASE_URL}/api/v1/patients/${user_id}`, {
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`, // Добавляем токен в заголовок
+              },
+            });
+            if (!response.ok) {
+              throw new Error('Ошибка при загрузке данных');
+            }
+            const data: Patient = await response.json();
+            setUser(data);
           }
-          const data: Patient = await response.json();
-          setUser(data);
         } catch (error) {
           console.error(error);
         }
@@ -88,7 +104,6 @@ const Header: React.FC = () => {
     }
   };
 
-
   return (
     <div>
       <header className="container mx-auto flex flex-wrap justify-center md:flex items-center justify-center mb-10 mt-9">
@@ -120,21 +135,30 @@ const Header: React.FC = () => {
                 </svg>
               </button>
               <nav className="flex flex-col w-full gap-2">
-                {!user ?
-                  <Link
-                    href="/register"
-                    className={`py-2 w-full  px-4 text-black rounded-lg transition-colors border-2 duration-300 ${pathname === '/' ? 'bg-lightBlue text-white' : ''}`}
-                    onClick={() => handleNavClick('/')}
-                  >
-                    Регистрация/Войти
-                  </Link>
-                  :
-                  <Link href={`/profile/${user_id}`} className="text-white w-full h-20 object-cover rounded-full flex items-center justify-between font-gilroy">
+                {user ?
+
+                  <Link href={`/user_profile/${user_id}`} className="text-white w-full h-20 object-cover rounded-full flex items-center justify-between font-gilroy">
                     {user.user.profile ? <div className='flex items-center gap-2 w-full h-20 object-cover justify-end'>
                       <span className='text-black'>{user.user.first_name}</span>
                       <img src={user.user.profile} className='w-30 h-30 object-cover h-20' alt={user.user.first_name} />
                     </div> : user.user.first_name}
-                  </Link>}
+                  </Link>
+                  : doctor ?
+                    <Link href={`/doctor_profile/${user_id}`} className="text-white w-full h-20 object-cover rounded-full flex items-center justify-between font-gilroy">
+                      {doctor.user.profile ? <div className='flex items-center gap-2 w-full h-20 object-cover justify-end'>
+                        <span className='text-black'>{doctor.user.first_name}</span>
+                        <img src={doctor.user.profile} className='w-30 h-30 object-cover h-20' alt={doctor.user.first_name} />
+                      </div> : doctor.user.first_name}
+                    </Link>
+                    :
+                    <Link
+                      href="/register"
+                      className={`py-2 w-full  px-4 text-black rounded-lg transition-colors border-2 duration-300 ${pathname === '/' ? 'bg-lightBlue text-white' : ''}`}
+                      onClick={() => handleNavClick('/')}
+                    >
+                      Регистрация/Войти
+                    </Link>
+                }
 
                 <Link
                   href="/"
@@ -215,7 +239,11 @@ const Header: React.FC = () => {
             )}
 
 
-            {!user ? <Link href={'/register'} className="bg-lightBlue text-white pl-6 pr-2 py-3 rounded-full flex items-center justify-between font-gilroy">
+            {user ? <Link href={`/user_profile/${user_id}`} className="bg-lightBlue text-white p-3 rounded-full flex items-center justify-between font-gilroy">
+              {user.user.profile ? <img src={user.user.profile} alt={user.user.first_name} className='w-20 rounded-full'/> : user.user.first_name}
+            </Link> : doctor ? <Link href={`/doctor_profile/${user_id}`} className="bg-lightBlue text-white p-3 rounded-full flex items-center justify-between font-gilroy">
+              {doctor.user.profile ? <img src={doctor.user.profile} alt={doctor.user.first_name} className='w-20 rounded-full'/> : doctor.user.first_name}
+            </Link> : <Link href={'/register'} className="bg-lightBlue text-white pl-6 pr-2 py-3 rounded-full flex items-center justify-between font-gilroy">
               Регистрация
               <span className="ml-2 bg-white text-black px-3 py-3 rounded-full">
                 <svg
@@ -229,8 +257,6 @@ const Header: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </span>
-            </Link> : <Link href={`/profile/${user_id}`} className="bg-lightBlue text-white p-3 rounded-full flex items-center justify-between font-gilroy">
-              {user.user.profile ? <img src={user.user.profile} alt={user.user.first_name} /> : user.user.first_name}
             </Link>}
           </div>
         </div>

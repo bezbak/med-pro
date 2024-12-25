@@ -33,6 +33,7 @@ export default function Login({ }: Props) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('refresh_token', data.refresh_token);
             localStorage.setItem('user_id', data.user_id);
+            localStorage.setItem('is_doctor', data.is_doctor);
             router.push('/');
         } catch (err: any) {
             setError(err.message);

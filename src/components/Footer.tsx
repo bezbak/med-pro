@@ -123,7 +123,7 @@ const Footer = () => {
             </div>
         </div>
       </div>
-      <div className="max-w-[510px] mx-auto text-white flex gap-3 px-5 py-6 rounded-xl bg-[#7153FF] items-center justify-center text-[12px] md:text-[20px] sm:px-3 sm:py-4 sm:gap-2 max-sm:mx-[10px] max-sm:pb-[20px] sm:m-[20px]">
+      <div className="max-w-[510px] mx-auto text-white flex gap-3 px-5 py-6 rounded-xl bg-[#7153FF] items-center justify-center text-[12px] md:text-[20px] sm:px-3 sm:py-4 sm:gap-2 max-sm:mx-[10px] max-sm:pb-[20px]">
         <Image src={ttlogo} alt="TTlogo" width={28} height={28} /> Разработано
         компанией Tommorow-Techs ✨
       </div>

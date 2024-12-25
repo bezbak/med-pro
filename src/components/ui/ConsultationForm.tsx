@@ -76,7 +76,7 @@ const ConsultationForm: React.FC = () => {
         consul_type: fromData.type || "",
         wh_number: fromData.number || "",
         notes: fromData.text || "",
-        patient: fromData.user_id || null,
+        patient_id: fromData.user_id || null,
         doctor_id: fromData.doc_id || null,
       };
 
@@ -94,7 +94,7 @@ const ConsultationForm: React.FC = () => {
         if (response.ok) {
           const result = await response.json();
           localStorage.removeItem('form_data')
-          router.push(`/profile/${user_id}`);;
+          router.push(`/user_profile/${user_id}`);;
         } else {
           console.error("Ошибка при отправке данных:", response.statusText);
           alert("Ошибка при отправке данных.");

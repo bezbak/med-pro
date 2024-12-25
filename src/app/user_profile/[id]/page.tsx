@@ -44,7 +44,6 @@ export default function Profile({ }: Props) {
     useEffect(() => {
         if (patientData != null) {
             setConsultations(patientData.consultations)
-            console.log(patientData.consultations.length);
             
             setUser(patientData.user)
         }
@@ -53,7 +52,6 @@ export default function Profile({ }: Props) {
         if (consultations2 != null && user != null && consultations2.length >0) {
 
             const consul_type = consultations2[0].consul_type;
-            console.log(consultations2);
             
 
             setConsuleType(data_types[consul_type as keyof typeof data_types])
@@ -100,7 +98,7 @@ export default function Profile({ }: Props) {
                                     <p className="mt-2 text-[24px]">
                                         {consuleType}-{date} у доктора {consultations[0].doctor.user.first_name}
                                     </p>
-                                    <Link href={`/profile/${id}/catalog`} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
+                                    <Link href={`/user_profile/${id}/catalog`} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
                                         Перейти в каталог
                                     </Link>
                                 </div>
@@ -145,7 +143,7 @@ export default function Profile({ }: Props) {
                                 </div>
                                 <p className="text-gray-400 mt-2">Доступно 4 врачей</p>
                             </div>
-                            <Link href={`/profile/${id}/reviews`} className="bg-white p-4 rounded-lg shadow-md text-center">
+                            <Link href={`/user_profile/${id}/reviews`} className="bg-white p-4 rounded-lg shadow-md text-center">
                                 <div className='flex align-center justify-center items-center gap-2'>
                                     <svg width="40" height="40" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="1.5" y="1.5" width="67" height="67" rx="33.5" stroke="#9CC8FC" stroke-width="3" />
