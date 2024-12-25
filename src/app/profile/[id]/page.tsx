@@ -110,7 +110,7 @@ export default function Profile({ }: Props) {
                                     <p className="mt-2 text-[24px]">
                                         Вы пока не записались на консультацию. Запишитесь, перейдя в каталог.
                                     </p>
-                                    <Link href={'/doctors'} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
+                                    <Link href={'/services'} className="mt-8 w-[fit-content] block px-4 py-2 bg-lightBlue text-white rounded-md shadow hover:bg-lightBlue-600 transition">
                                         Записаться на консультацию
                                     </Link>
                                 </div>
@@ -145,7 +145,7 @@ export default function Profile({ }: Props) {
                                 </div>
                                 <p className="text-gray-400 mt-2">Доступно 4 врачей</p>
                             </div>
-                            <div className="bg-white p-4 rounded-lg shadow-md text-center">
+                            <Link href={`/profile/${id}/reviews`} className="bg-white p-4 rounded-lg shadow-md text-center">
                                 <div className='flex align-center justify-center items-center gap-2'>
                                     <svg width="40" height="40" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="1.5" y="1.5" width="67" height="67" rx="33.5" stroke="#9CC8FC" stroke-width="3" />
@@ -155,7 +155,7 @@ export default function Profile({ }: Props) {
                                     <h4 className="text-lg font-semibold text-gray-800">Ваши оценки</h4>
                                 </div>
                                 <p className="text-gray-400 mt-2">Вы оставляли 8 отзывов</p>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

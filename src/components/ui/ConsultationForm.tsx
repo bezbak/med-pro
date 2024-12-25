@@ -77,7 +77,7 @@ const ConsultationForm: React.FC = () => {
         wh_number: fromData.number || "",
         notes: fromData.text || "",
         patient: fromData.user_id || null,
-        doctor: fromData.doc_id || null,
+        doctor_id: fromData.doc_id || null,
       };
 
       try {

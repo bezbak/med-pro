@@ -29,6 +29,8 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
 
     useEffect(()=>{
         setSelectedDate(data?.day);
+        console.log(data);
+        
         setSelectedTime(data?.time);
 
     },[data])
@@ -81,6 +83,8 @@ const SweetCalendar = ({ schedule, work_time }: { schedule: WorkTime, work_time:
 
     // Получаем занятые слоты для выбранной даты
     const getBusySlotsForDate = (date: string) => {
+        console.log(schedule[date]);
+        
         return schedule[date]?.busy_slots || [];
     };
 

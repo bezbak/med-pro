@@ -6,6 +6,7 @@ import Block from '../ui/Block';
 import { infoBlock } from '@/data/data';
 import { Dialog, Transition } from '@headlessui/react';
 import './styles/info.css'
+import Link from 'next/link';
 type Props = {};
 
 const Info = (props: Props) => {
@@ -26,12 +27,12 @@ const Info = (props: Props) => {
                     <h2 className="text-[36px] leading-tight font-gilroy">
                         У нас работают только <br /> опытные специалисты{' '}
                     </h2>
-                    <button
-                        onClick={openModal}
+                    <Link
+                        href={'/services'}
                         className="absolute bottom-9 right-11 px-8 py-4 rounded-full bg-[#9CC8FC]"
                     >
                         Записаться на консультацию
-                    </button>
+                    </Link>
                 </Block>
                 <Block className="w-2/5 text-white !bg-[#FFAEAD] px-7 py-10 suka_block">
                     {infoBlock.map((info) => (
