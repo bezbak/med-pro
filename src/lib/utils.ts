@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const BASE_URL = 'http://127.0.0.1:8000';
+export const BASE_URL = 'https://back.med-pro.kg/';
 export const FRONT_URL = 'https://med-pro.kg/';
 
 export function pushForm(inputs:ClassDictionary) {
