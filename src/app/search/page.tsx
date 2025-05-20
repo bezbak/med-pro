@@ -6,10 +6,12 @@ import { BASE_URL } from '@/lib/utils';
 import { IoBookmarkOutline, IoStar } from 'react-icons/io5';
 import Link from 'next/link';
 import '../doctors/doctors.css'
+import { Suspense } from 'react'
 
-const SearchPage: React.FC = () => {
+// Выносим основную логику в отдельный компонент
+const SearchResults = () => {
     const searchParams = useSearchParams();
-    const query = searchParams.get('query');; // Получение параметра из URL
+    const query = searchParams.get('query');
     const [results, setResults] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -17,16 +19,20 @@ const SearchPage: React.FC = () => {
         const fetchResults = async () => {
             if (query) {
                 try {
-                    const response = await fetch(`${BASE_URL}/api/v1/doctors?search=${encodeURIComponent(query as string)}`);
+                    setIsLoading(true);
+                    const response = await fetch(`${BASE_URL}/api/v1/doctors?search=${encodeURIComponent(query)}`);
                     if (!response.ok) throw new Error('Ошибка загрузки данных');
-
                     const data = await response.json();
                     setResults(data);
                 } catch (error) {
                     console.error('Ошибка при поиске:', error);
+                    setResults([]);
                 } finally {
                     setIsLoading(false);
                 }
+            } else {
+                setResults([]);
+                setIsLoading(false);
             }
         };
 
@@ -34,7 +40,7 @@ const SearchPage: React.FC = () => {
     }, [query]);
 
     return (
-        <section id="doctorList">
+        <section id="doctorList" key={query}>
             <div className="w-full container mx-auto mt-[36px] font-gilroy">
                 <div className="bg-white max-w-full p-[32px] h-full rounded-3xl font-gilroy text-center">
                     <h1 className="max-sm:text-[28px] max-sm:mb-[10px] text-[30px] font-bold text-left">
@@ -78,6 +84,15 @@ const SearchPage: React.FC = () => {
                 )}
             </div>
         </section>
+    );
+};
+
+// Основной компонент страницы оборачивает логику в Suspense
+const SearchPage: React.FC = () => {
+    return (
+        <Suspense fallback={<div>Загрузка...</div>}>
+            <SearchResults />
+        </Suspense>
     );
 };
 

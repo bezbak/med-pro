@@ -36,8 +36,8 @@ const Schedule: React.FC = () => {
             <div className="w-full container mx-auto mt-[36px] font-gilroy">
                 <h2 className="text-xl font-semibold mb-6">Ваше расписание на эту неделю</h2>
                 {
-                    patientData.consultations.map((cons) => (
-                        <div className="flex items-center justify-between my-4">
+                    patientData.consultations.map((cons, index) => (
+                        <div key={index} className="flex items-center justify-between my-4">
                             <div className="flex items-center rounded bg-[#A7CBB6] p-2 gap-2 mr-4 w-full">
                                 <div className="bg-lightBlue text-white p-2">{data_types[cons.consul_type as keyof typeof data_types]}</div>
                                 <div className='text-white'>{cons.date}-{cons.time}</div>
