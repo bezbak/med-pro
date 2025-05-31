@@ -5,8 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const BASE_URL = 'https://back.med-pro.kg/';
-export const FRONT_URL = 'https://med-pro.kg/';
+// export const BASE_URL = 'https://back.med-pro.kg/';
+// export const FRONT_URL = 'https://med-pro.kg/';
+export const BASE_URL = 'http://127.0.0.1:8000/';
+export const FRONT_URL = 'http://localhost:3000/';
 
 export function pushForm(inputs:ClassDictionary) {
   let data:ClassDictionary  = JSON.parse(localStorage.getItem('form_data') ?? '{}');

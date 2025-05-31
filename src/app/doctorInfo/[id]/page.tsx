@@ -13,6 +13,8 @@ import Link from 'next/link';
 
 const DoctorInfo: React.FC = () => {
   const { id } = useParams(); // Получаем параметр 'id' из URL
+  const is_doctor = localStorage.getItem("is_doctor");
+
   const [doctorData, setDoctorData] = useState<Doctor | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
@@ -21,6 +23,7 @@ const DoctorInfo: React.FC = () => {
   const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
   // Запрашиваем данные врача по ID
   useEffect(() => {
     const fetchDoctorData = async () => {
@@ -160,11 +163,14 @@ const DoctorInfo: React.FC = () => {
           <p className="w-full min-h-[170px] max-sm:text-[18px] text-[24px] mt-[17px] leading-7 break-words">
             {doctorData.description}
           </p>
-          <Link href={`/consultation/${doctorData.id}`}
-            className="block bg-lightBlue text-white text-[20px] p-5 w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
-          >
-            Записаться на прием
-          </Link>
+          { !is_doctor ?
+            <Link href={`/consultation/${doctorData.id}`}
+              className="block bg-lightBlue text-white text-[20px] p-5 w-[244px] font-gilroy py-2 rounded-full mt-[19px]"
+            >
+              Записаться на прием
+            </Link>
+            :
+            ''}
         </div>
       </div>
       <div className="container max-md:grid-cols-1 grid grid-cols-2 gap-4 p-4">

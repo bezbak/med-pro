@@ -65,6 +65,8 @@ const ConsultationForm: React.FC = () => {
 
     if (!allAgreed) {
       alert("Пожалуйста, примите соглашения.");
+    } else if (!user_id) {
+      alert('Зарегестрируйтесь или войдите в аккаунт!')
     } else if (!allLocalDataValid) {
       console.log(fromData);
 
